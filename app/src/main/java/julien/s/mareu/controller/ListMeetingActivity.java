@@ -1,8 +1,10 @@
 package julien.s.mareu.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Adapter;
 import android.widget.Toolbar;
 
 import julien.s.mareu.R;

@@ -7,8 +7,16 @@
     tools:context=".controller.ListMeetingActivity">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragment_meeting_list_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/colorAccent"
+        android:clickable="true"
+        tools:srcCompat="@drawable/ic_add_black_24dp"
+        />
 </RelativeLayout>
