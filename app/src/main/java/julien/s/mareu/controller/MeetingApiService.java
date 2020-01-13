@@ -7,9 +7,9 @@ import julien.s.mareu.model.Meeting;
 public interface MeetingApiService {
 
 
-    ArrayList<Meeting> getMeetings();
+    ArrayList<Meeting> getMeetingsList();
 
-    Meeting addMeeting(Meeting meeting);
+    void addMeeting(Meeting meeting);
 
     void deleteMeeting(Meeting meeting);
 }

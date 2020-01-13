@@ -29,7 +29,7 @@ public class ListMeetingActivity extends AppCompatActivity {
 
         ArrayList<Meeting> mMeetingsList = new ArrayList<>();
         mMeetingsList.add(new Meeting("ExempleRoom","Exemple Hour","Exemple Subject",participants));
-        mMeetingsList.add(new Meeting("ExempleRoom2","Exemple Hour2","Exemple Subject2",participants));
+        mMeetingsList.add(new Meeting("ExempleRoom","Exemple Hour","Exemple Subject",participants));
         mMeetingsList.add(new Meeting("ExempleRoom3","Exemple Hour3","Exemple Subject3",participants));
 
         mRecyclerView = findViewById(R.id.recyclerView);
