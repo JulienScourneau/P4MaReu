@@ -1,15 +1,11 @@
 package julien.s.mareu.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
-import android.widget.Adapter;
-import android.widget.Toolbar;
+
+import java.util.ArrayList;
 
 import julien.s.mareu.R;
 import julien.s.mareu.View.MeetingAdapter;
@@ -17,6 +13,9 @@ import julien.s.mareu.model.Meeting;
 
 
 public class ListMeetingActivity extends AppCompatActivity {
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

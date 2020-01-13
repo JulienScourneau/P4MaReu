@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:oriantation="vertical"
     android:background="@color/white"
     android:id="@+id/fragment_item_meeting">
 
@@ -76,7 +75,6 @@
         android:background="@null"
         app:layout_constraintBottom_toBottomOf="@+id/item_list_meeting"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintTop_toTopOf="@+id/item_list_meeting"
         app:srcCompat="@drawable/ic_delete_white_24dp" />
 

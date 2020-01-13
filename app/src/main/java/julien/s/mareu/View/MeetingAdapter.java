@@ -25,7 +25,6 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
 
         public FloatingActionButton mAddMeetingButton;
         public ImageButton mDeleteMeetingButton;
-
         public TextView mRoom;
         public TextView mHour;
         public TextView mSubject;
