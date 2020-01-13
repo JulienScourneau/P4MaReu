@@ -3,11 +3,14 @@ package julien.s.mareu.View;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -19,10 +22,13 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
 
     public static class MeetingViewHolder extends RecyclerView.ViewHolder{
 
+
         public TextView mRoom;
         public TextView mHour;
         public TextView mSubject;
         public TextView mParticipant;
+        public ImageButton mDeleteMeetingButton;
+        public FloatingActionButton mAddMeetingButton;
 
         public MeetingViewHolder(View itemView) {
             super(itemView);
@@ -30,6 +36,8 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
             mHour = itemView.findViewById(R.id.item_hour_meeting);
             mSubject = itemView.findViewById(R.id.item_subject_meeting);
             mParticipant = itemView.findViewById(R.id.item_participant_meeting);
+            mAddMeetingButton = itemView.findViewById(R.id.add_new_meeting_button);
+            mDeleteMeetingButton = itemView.findViewById(R.id.item_list_delete_button);
         }
     }
 
@@ -47,12 +55,19 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
 
     @Override
     public void onBindViewHolder(MeetingViewHolder holder, int position) {
-        Meeting mMeeting = mMeetingList.get(position);
+        final Meeting mMeeting = mMeetingList.get(position);
 
         holder.mRoom.setText(mMeeting.getRoom());
         holder.mHour.setText(mMeeting.getHour());
         holder.mSubject.setText(mMeeting.getSubject());
         //holder.mParticipant.setText((CharSequence) mMeeting.getParticipant());
+
+        holder.mDeleteMeetingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 
