@@ -1,21 +1,31 @@
 package julien.s.mareu.model;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Meeting {
 
     private String mRoom;
     private String mHour;
     private String mSubject;
-    private ArrayList<String> mParticipant = new ArrayList();
+    private List<String> mParticipantList;
+    private String mParticipant;
 
-    public Meeting(String room, String hour, String subject, ArrayList<String> participant) {
+    /**
+     * Constructor
+     *
+     */
+    public Meeting(String room, String hour, String subject, List<String> participant) {
         this.mRoom = room;
         this.mHour = hour;
         this.mSubject = subject;
-        this.mParticipant = participant;
+        this.mParticipantList = participant;
     }
 
+    /**
+     * Getter
+     *
+     */
     public String getRoom() {
         return mRoom;
     }
@@ -28,10 +38,17 @@ public class Meeting {
         return mSubject;
     }
 
-    public ArrayList<String> getParticipant() {
+    public List<String> getParticipantList(){
+        return mParticipantList;
+    }
+    public String getParticipant(){
         return mParticipant;
     }
 
+    /**
+     * Setters
+     *
+     */
     public void setRoom(String room) {
         mRoom = room;
     }
@@ -44,7 +61,12 @@ public class Meeting {
         mSubject = subject;
     }
 
-    public void setParticipant(ArrayList<String> participant) {
+    public void setParticipantList(List<String> participantList) {
+        mParticipantList = participantList;
+    }
+
+    public void setParticipant(List<String> mParticipantsList) {
+        
         mParticipant = participant;
     }
 }

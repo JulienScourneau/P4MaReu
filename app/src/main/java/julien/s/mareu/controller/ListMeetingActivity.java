@@ -6,16 +6,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import julien.s.mareu.R;
 import julien.s.mareu.View.MeetingAdapter;
 import julien.s.mareu.model.Meeting;
+import julien.s.mareu.model.TestMeetingList;
 
 
 public class ListMeetingActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private List<Meeting> mMeetingList = TestMeetingList.getMeetingsList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class ListMeetingActivity extends AppCompatActivity {
 
         mRecyclerView = findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new MeetingAdapter(mMeetingsList);
+        mAdapter = new MeetingAdapter(mMeetingList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);

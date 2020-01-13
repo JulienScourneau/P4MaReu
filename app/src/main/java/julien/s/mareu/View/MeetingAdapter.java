@@ -13,12 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import julien.s.mareu.R;
 import julien.s.mareu.model.Meeting;
 
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingViewHolder> {
-    private ArrayList<Meeting> mMeetingList;
+    private List<Meeting> mMeetingList;
 
     public static class MeetingViewHolder extends RecyclerView.ViewHolder{
 
@@ -42,7 +43,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
         }
     }
 
-    public MeetingAdapter(ArrayList<Meeting> meetingList) {
+    public MeetingAdapter(List<Meeting> meetingList) {
         mMeetingList = meetingList;
 
     }
@@ -62,7 +63,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
         holder.mRoom.setText(mMeeting.getRoom());
         holder.mHour.setText(mMeeting.getHour());
         holder.mSubject.setText(mMeeting.getSubject());
-        //holder.mParticipant.setText((CharSequence) mMeeting.getParticipant());
+        holder.mParticipant.setText(mMeeting.getParticipant());
 
         holder.mDeleteMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
