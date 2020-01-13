@@ -22,12 +22,15 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
 
     public static class MeetingViewHolder extends RecyclerView.ViewHolder{
 
+
         public FloatingActionButton mAddMeetingButton;
         public ImageButton mDeleteMeetingButton;
+
         public TextView mRoom;
         public TextView mHour;
         public TextView mSubject;
         public TextView mParticipant;
+
 
         public MeetingViewHolder(View itemView) {
             super(itemView);
@@ -54,6 +57,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
 
     @Override
     public void onBindViewHolder(MeetingViewHolder holder, int position) {
+
         Meeting mMeeting = mMeetingList.get(position);
 
         holder.mRoom.setText(mMeeting.getRoom());

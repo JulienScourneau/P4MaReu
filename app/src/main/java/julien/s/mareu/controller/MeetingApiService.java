@@ -6,7 +6,6 @@ import julien.s.mareu.model.Meeting;
 
 public interface MeetingApiService {
 
-
     ArrayList<Meeting> getMeetingsList();
 
     void addMeeting(Meeting meeting);
