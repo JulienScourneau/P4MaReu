@@ -1,15 +1,15 @@
 package julien.s.mareu.model;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Meeting {
 
+    private int mIcone;
     private String mRoom;
     private String mHour;
     private String mSubject;
     private List<String> mParticipantList;
-    private String mParticipant;
+    private String mParticipants;
 
     /**
      * Constructor
@@ -22,10 +22,16 @@ public class Meeting {
         this.mParticipantList = participant;
     }
 
+
+
     /**
      * Getter
      *
      */
+    public int getIcone(){
+        return mIcone;
+    }
+
     public String getRoom() {
         return mRoom;
     }
@@ -41,14 +47,19 @@ public class Meeting {
     public List<String> getParticipantList(){
         return mParticipantList;
     }
+
     public String getParticipant(){
-        return mParticipant;
+        return mParticipants;
     }
 
     /**
      * Setters
      *
      */
+    public void setIcone(int icone){
+        mIcone = icone;
+    }
+
     public void setRoom(String room) {
         mRoom = room;
     }
@@ -65,8 +76,7 @@ public class Meeting {
         mParticipantList = participantList;
     }
 
-    public void setParticipant(List<String> mParticipantsList) {
-        
-        mParticipant = participant;
+    public void setParticipant(String participant) {
+        mParticipants = participant;
     }
 }
