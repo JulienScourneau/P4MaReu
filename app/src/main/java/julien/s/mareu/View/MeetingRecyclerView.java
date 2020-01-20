@@ -9,29 +9,26 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
 import julien.s.mareu.R;
-import julien.s.mareu.controller.MeetingApiService;
+import julien.s.mareu.controller.DI;
 import julien.s.mareu.model.Meeting;
 
-public class MeetingRecyclerview extends RecyclerView.Adapter<MeetingRecyclerview.MeetingViewHolder> {
-    private List<Meeting> mMeetingList;
+public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerView.MeetingViewHolder> {
+    private final List<Meeting> mMeetingList;
 
-    public static class MeetingViewHolder extends RecyclerView.ViewHolder{
+    public class MeetingViewHolder extends RecyclerView.ViewHolder{
 
-
-        public FloatingActionButton mAddMeetingButton;
-        public ImageButton mDeleteMeetingButton;
-        public ImageView mMeetingIcone;
-        public TextView mMeetingRoom;
-        public TextView mMeetingHour;
-        public TextView mMeetingSubject;
-        public TextView mMeetingParticipant;
+        private FloatingActionButton mAddMeetingButton;
+        private ImageButton mDeleteMeetingButton;
+        private ImageView mMeetingIcone;
+        private TextView mMeetingRoom;
+        private TextView mMeetingHour;
+        private TextView mMeetingSubject;
+        private TextView mMeetingParticipant;
 
 
         public MeetingViewHolder(View itemView) {
@@ -43,17 +40,18 @@ public class MeetingRecyclerview extends RecyclerView.Adapter<MeetingRecyclervie
             mMeetingParticipant = itemView.findViewById(R.id.item_participant_meeting);
             mAddMeetingButton = itemView.findViewById(R.id.add_new_meeting_button);
             mDeleteMeetingButton = itemView.findViewById(R.id.item_list_delete_button);
+
         }
     }
 
-    public MeetingRecyclerview(List<Meeting> meetingList) {
+    public MeetingRecyclerView(List<Meeting> meetingList) {
         mMeetingList = meetingList;
 
     }
 
     @Override
     public MeetingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_meeting,parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_meeting, parent, false);
         MeetingViewHolder viewHolder = new MeetingViewHolder(v);
         return viewHolder;
     }
@@ -61,12 +59,19 @@ public class MeetingRecyclerview extends RecyclerView.Adapter<MeetingRecyclervie
     @Override
     public void onBindViewHolder(final MeetingViewHolder holder, int position) {
 
-        final Meeting mMeeting = mMeetingList.get(position);
+        Meeting mMeetings = mMeetingList.get(position);
 
-        holder.mMeetingRoom.setText(mMeeting.getRoom());
-        holder.mMeetingHour.setText(mMeeting.getHour());
-        holder.mMeetingSubject.setText(mMeeting.getSubject());
-        holder.mMeetingParticipant.setText(mMeeting.getParticipant());
+        holder.mMeetingRoom.setText(mMeetings.getRoom());
+        holder.mMeetingHour.setText(mMeetings.getHour());
+        holder.mMeetingSubject.setText(mMeetings.getSubject());
+        holder.mMeetingParticipant.setText(mMeetings.getParticipant());
+
+        holder.mDeleteMeetingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 
@@ -74,4 +79,5 @@ public class MeetingRecyclerview extends RecyclerView.Adapter<MeetingRecyclervie
     public int getItemCount() {
         return mMeetingList.size();
     }
+
 }

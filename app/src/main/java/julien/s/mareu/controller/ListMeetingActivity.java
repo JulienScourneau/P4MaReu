@@ -10,7 +10,7 @@ import java.util.List;
 import android.os.Bundle;
 
 import julien.s.mareu.R;
-import julien.s.mareu.View.MeetingRecyclerview;
+import julien.s.mareu.View.MeetingRecyclerView;
 import julien.s.mareu.model.Meeting;
 import julien.s.mareu.model.TestMeetingList;
 
@@ -38,7 +38,7 @@ public class ListMeetingActivity extends AppCompatActivity {
 
         mRecyclerView = findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new MeetingRecyclerview(mMeetingList);
+        mAdapter = new MeetingRecyclerView(mMeetingList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);

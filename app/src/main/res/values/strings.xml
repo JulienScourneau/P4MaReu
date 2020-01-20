@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MaRéu</string>
+    <string name="room_meeting">Salle</string>
+    <string name="hour_meeting">Heure et date</string>
+    <string name="subject_meeting">Sujet</string>
+    <string name="participants_meeting">Participants</string>
 </resources>
