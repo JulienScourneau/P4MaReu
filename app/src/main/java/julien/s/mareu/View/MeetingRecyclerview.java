@@ -53,7 +53,7 @@ public class MeetingRecyclerview extends RecyclerView.Adapter<MeetingRecyclervie
 
     @Override
     public MeetingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_item_meeting,parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_meeting,parent, false);
         MeetingViewHolder viewHolder = new MeetingViewHolder(v);
         return viewHolder;
     }
@@ -63,31 +63,10 @@ public class MeetingRecyclerview extends RecyclerView.Adapter<MeetingRecyclervie
 
         final Meeting mMeeting = mMeetingList.get(position);
 
-       // Glide.with(holder.mMeetingIcone.getContext())
-       //         .load(mMeeting.getIcone())
-       //         .apply(RequestOptions.circleCropTransform())
-       //         .into(holder.mMeetingIcone);
-
         holder.mMeetingRoom.setText(mMeeting.getRoom());
         holder.mMeetingHour.setText(mMeeting.getHour());
         holder.mMeetingSubject.setText(mMeeting.getSubject());
         holder.mMeetingParticipant.setText(mMeeting.getParticipant());
-
-        holder.mAddMeetingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
-
-        holder.mDeleteMeetingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-            }
-        });
 
     }
 

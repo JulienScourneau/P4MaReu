@@ -3,10 +3,11 @@ package julien.s.mareu.controller;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android.os.Bundle;
 
 import julien.s.mareu.R;
 import julien.s.mareu.View.MeetingRecyclerview;
@@ -15,6 +16,7 @@ import julien.s.mareu.model.TestMeetingList;
 
 
 public class ListMeetingActivity extends AppCompatActivity {
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
