@@ -1,6 +1,7 @@
 package julien.s.mareu.model;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Meeting {
 
@@ -77,6 +78,23 @@ public class Meeting {
     }
 
     public void setParticipant(String participant) {
-        mParticipants = participant;
+        mParticipants = join(",",getParticipantList());
+
+    }
+
+    private String join(String separator, List<String> participantList) {
+        if (participantList ==null || participantList.size() <= 0)
+            return "";
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < participantList.size();i++) {
+
+            sb.append(participantList.get(i));
+            if (i != participantList.size() -1){
+                sb.append(separator);
+            }
+        }
+        return sb.toString();
     }
 }

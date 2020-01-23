@@ -28,6 +28,7 @@ public class MeetingDialog extends AppCompatDialogFragment {
 
         builder.setView(view)
                 .setTitle("Nouvelle réunion")
+
                 .setPositiveButton("Accpeter", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

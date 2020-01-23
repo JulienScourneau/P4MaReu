@@ -22,13 +22,13 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
 
     public class MeetingViewHolder extends RecyclerView.ViewHolder{
 
-        private FloatingActionButton mAddMeetingButton;
-        private ImageButton mDeleteMeetingButton;
-        private ImageView mMeetingIcone;
-        private TextView mMeetingRoom;
-        private TextView mMeetingHour;
-        private TextView mMeetingSubject;
-        private TextView mMeetingParticipant;
+        public FloatingActionButton mAddMeetingButton;
+        public ImageButton mDeleteMeetingButton;
+        public ImageView mMeetingIcone;
+        public TextView mMeetingRoom;
+        public TextView mMeetingHour;
+        public TextView mMeetingSubject;
+        public TextView mMeetingParticipant;
 
 
         public MeetingViewHolder(View itemView) {
@@ -51,15 +51,15 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
 
     @Override
     public MeetingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_meeting, parent, false);
-        MeetingViewHolder viewHolder = new MeetingViewHolder(v);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_meeting, parent, false);
+        MeetingViewHolder viewHolder = new MeetingViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(final MeetingViewHolder holder, int position) {
+    public void onBindViewHolder(MeetingViewHolder holder, int position) {
 
-        Meeting mMeetings = mMeetingList.get(position);
+        final Meeting mMeetings = mMeetingList.get(position);
 
         holder.mMeetingRoom.setText(mMeetings.getRoom());
         holder.mMeetingHour.setText(mMeetings.getHour());
@@ -70,6 +70,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
             @Override
             public void onClick(View v) {
 
+                DI.getMeetingApiService().deleteMeeting(mMeetings);
             }
         });
 
