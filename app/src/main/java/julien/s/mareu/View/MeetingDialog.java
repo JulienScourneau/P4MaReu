@@ -2,20 +2,25 @@ package julien.s.mareu.View;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
+import androidx.fragment.app.DialogFragment;
 
 import julien.s.mareu.R;
+import julien.s.mareu.controller.TimePickerFragment;
 
 public class MeetingDialog extends AppCompatDialogFragment {
 
-    private EditText mEditRoom;
-    private EditText mEditHour;
+    private TimePickerDialog picker;
+    private TextView mEditHour;
     private EditText mEditSubject;
     private EditText mEditParticipants;
 
@@ -42,6 +47,23 @@ public class MeetingDialog extends AppCompatDialogFragment {
 
                     }
                 });
+
+        mEditHour = view.findViewById(R.id.edit_hour);
+        mEditHour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerFragment timePicker = new TimePickerFragment();
+                timePicker.setPickerListener(new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                        mEditHour.setText(hourOfDay + " " + minute);
+                    }
+                });
+                timePicker.show(getFragmentManager(),"time picker");
+            }
+        });
+
         return builder.create();
     }
 }
