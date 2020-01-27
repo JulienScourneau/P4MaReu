@@ -64,7 +64,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
         holder.mMeetingRoom.setText(mMeetings.getRoom());
         holder.mMeetingHour.setText(mMeetings.getHour());
         holder.mMeetingSubject.setText(mMeetings.getSubject());
-        holder.mMeetingParticipant.setText(mMeetings.getParticipant());
+        holder.mMeetingParticipant.setText("Participants");
 
         holder.mDeleteMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -23,6 +23,7 @@ public class ListMeetingActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    public FloatingActionButton mAddMeetingButton;
     private List<Meeting> mMeetingList = TestMeetingList.getMeetingsList();
 
     @Override
@@ -30,12 +31,22 @@ public class ListMeetingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_meeting);
 
+
+        mAddMeetingButton = findViewById(R.id.add_new_meeting_button);
+
+        mAddMeetingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MeetingDialog meetingDialog = new MeetingDialog();
+                meetingDialog.show(getSupportFragmentManager(),"meeting dialog");
+            }
+        });
+
         mRecyclerView = findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new MeetingRecyclerView(mMeetingList);
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-
     }
 }
