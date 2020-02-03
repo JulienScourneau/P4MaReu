@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -30,7 +32,6 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
         public TextView mMeetingSubject;
         public TextView mMeetingParticipant;
 
-
         public MeetingViewHolder(View itemView) {
             super(itemView);
             mMeetingIcone = itemView.findViewById(R.id.item_icone_meeting);
@@ -40,7 +41,6 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
             mMeetingParticipant = itemView.findViewById(R.id.item_participant_meeting);
             mAddMeetingButton = itemView.findViewById(R.id.add_new_meeting_button);
             mDeleteMeetingButton = itemView.findViewById(R.id.item_list_delete_button);
-
         }
     }
 
@@ -57,23 +57,28 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
     }
 
     @Override
-    public void onBindViewHolder(MeetingViewHolder holder, int position) {
+    public void onBindViewHolder(MeetingViewHolder holder, final int position) {
 
         final Meeting mMeetings = mMeetingList.get(position);
 
         holder.mMeetingRoom.setText(mMeetings.getRoom());
         holder.mMeetingHour.setText(mMeetings.getHour());
         holder.mMeetingSubject.setText(mMeetings.getSubject());
-        holder.mMeetingParticipant.setText("Participants");
+        holder.mMeetingParticipant.setText(mMeetings.getParticipant());
+        holder.mMeetingIcone.setBackgroundColor(mMeetings.getRandomColor());
+        Glide.with(holder.mMeetingIcone.getContext())
+                .load(mMeetings.getIcone())
+                .apply(RequestOptions.circleCropTransform())
+                .into(holder.mMeetingIcone);
 
         holder.mDeleteMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 DI.getMeetingApiService().deleteMeeting(mMeetings);
+                removeItem(position);
             }
         });
-
     }
 
     @Override
@@ -81,4 +86,8 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
         return mMeetingList.size();
     }
 
+    public void removeItem (int position){
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, mMeetingList.size());
+    }
 }

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -22,6 +23,7 @@ import julien.s.mareu.R;
 
 public class MeetingDialog extends AppCompatDialogFragment {
 
+    private Spinner mRoom;
     private TextView mEditHour, mEditDate;
     private EditText mEditSubject;
     private EditText mEditParticipants;
@@ -39,6 +41,11 @@ public class MeetingDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Accpeter", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        String room = mRoom.getSelectedItem().toString();
+                        String hour = mEditHour.getText().toString();
+                        String date = mEditDate.getText().toString();
+                        String subject = mEditSubject.getText().toString();
 
                     }
                 })
@@ -85,5 +92,9 @@ public class MeetingDialog extends AppCompatDialogFragment {
         });
 
         return builder.create();
+    }
+
+    public interface MeetingDialogListener{
+        void applyMeeting();
     }
 }

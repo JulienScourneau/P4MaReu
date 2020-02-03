@@ -18,7 +18,7 @@ import julien.s.mareu.model.Meeting;
 import julien.s.mareu.model.TestMeetingList;
 
 
-public class ListMeetingActivity extends AppCompatActivity {
+public class ListMeetingActivity extends AppCompatActivity implements MeetingDialog.MeetingDialogListener {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -48,6 +48,11 @@ public class ListMeetingActivity extends AppCompatActivity {
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void applyMeeting() {
+
     }
 }

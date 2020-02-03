@@ -1,13 +1,16 @@
 package julien.s.mareu.model;
 
+import android.graphics.Color;
+
 import java.util.List;
-import java.util.StringJoiner;
+import java.util.Random;
 
 public class Meeting {
 
     private int mIcone;
     private String mRoom;
     private String mHour;
+    private String mDate;
     private String mSubject;
     private List<String> mParticipantList;
     private String mParticipants;
@@ -16,14 +19,13 @@ public class Meeting {
      * Constructor
      *
      */
-    public Meeting(String room, String hour, String subject, List<String> participant) {
+    public Meeting(String room, String hour,String date, String subject, List<String> participant) {
         this.mRoom = room;
         this.mHour = hour;
+        this.mDate = date;
         this.mSubject = subject;
         this.mParticipantList = participant;
     }
-
-
 
     /**
      * Getter
@@ -39,6 +41,10 @@ public class Meeting {
 
     public String getHour() {
         return mHour;
+    }
+
+    public String getDate() {
+        return mDate;
     }
 
     public String getSubject() {
@@ -69,6 +75,10 @@ public class Meeting {
         mHour = hour;
     }
 
+    public void setDate(String date) {
+        mDate = date;
+    }
+
     public void setSubject(String subject) {
         mSubject = subject;
     }
@@ -82,19 +92,26 @@ public class Meeting {
 
     }
 
-    private String join(String separator, List<String> participantList) {
-        if (participantList ==null || participantList.size() <= 0)
+    private static String join(String separator, List<String> inputList) {
+
+        if (inputList == null || inputList.size() <= 0)
             return "";
 
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < participantList.size();i++) {
+        for (int i = 0; i < inputList.size(); i++) {
 
-            sb.append(participantList.get(i));
-            if (i != participantList.size() -1){
+            sb.append(inputList.get(i));
+
+            if (i != inputList.size() -1){
                 sb.append(separator);
             }
         }
         return sb.toString();
+    }
+
+    public int getRandomColor(){
+        Random rnd = new Random();
+        return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256),rnd.nextInt(256));
     }
 }

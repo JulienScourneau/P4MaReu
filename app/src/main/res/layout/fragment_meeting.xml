@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_item_meeting"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
-    android:id="@+id/fragment_item_meeting">
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/item_icone_meeting"
@@ -35,10 +34,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
-        android:text="Hour meeting"
+        android:text="00h00"
         app:layout_constraintBottom_toBottomOf="@+id/item_icone_meeting"
         app:layout_constraintStart_toEndOf="@+id/guideline_hour"
         app:layout_constraintTop_toTopOf="@+id/item_icone_meeting" />
+
+    <TextView
+        android:id="@+id/item_date_meeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="00/00"
+        app:layout_constraintTop_toTopOf="@+id/item_icone_meeting"
+        app:layout_constraintBottom_toBottomOf="@+id/item_icone_meeting"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_date"/>
 
     <TextView
         android:id="@+id/item_room_meeting"
@@ -60,19 +69,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/item_icone_meeting"
         app:layout_constraintStart_toStartOf="@+id/item_subject_meeting"
         app:layout_constraintTop_toBottomOf="@+id/item_subject_meeting"
-        app:layout_constraintWidth_max="370dp"/>
+        app:layout_constraintWidth_max="370dp" />
 
     <ImageButton
         android:id="@+id/item_list_delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:background="@null"
         android:src="@drawable/ic_delete_white_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/ic_delete_white_24dp"
-        android:background="@null"/>
+        tools:srcCompat="@drawable/ic_delete_white_24dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_subject"
@@ -101,5 +110,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="370dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="268dp"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
