@@ -9,27 +9,52 @@
         android:id="@+id/edit_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:padding="4dp"
         />
+
+    <Spinner
+        android:id="@+id/spinner_room"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edit_hour"
+        android:layout_alignTop="@+id/edit_room"
+        android:layout_toEndOf="@+id/edit_room" />
 
     <TextView
         android:hint="@string/hour_meeting"
         android:id="@+id/edit_hour"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_room"/>
+        android:padding="4dp"
+        android:textSize="18dp"
+        android:layout_below="@+id/edit_room"
+        android:layout_toStartOf="@+id/edit_date"/>
 
-    <EditText
-        android:hint="@string/subject_meeting"
-        android:id="@+id/edit_subject"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/edit_date"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_hour"/>
+        android:layout_below="@+id/edit_room"
+        android:layout_centerHorizontal="true"
+        android:hint="Date"
+        android:padding="4dp"
+        android:textSize="18dp" />
 
     <EditText
         android:hint="@string/participants_meeting"
         android:id="@+id/edit_participant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_subject"/>
+        android:layout_below="@+id/edit_hour"/>
+
+    <EditText
+        android:hint="@string/subject_meeting"
+        android:id="@+id/edit_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_participant"/>
+
+
 
 </RelativeLayout>

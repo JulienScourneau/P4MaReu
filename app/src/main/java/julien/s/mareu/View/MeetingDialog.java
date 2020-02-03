@@ -1,26 +1,28 @@
 package julien.s.mareu.View;
 
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.fragment.app.DialogFragment;
+
+import java.text.DateFormat;
+import java.util.Calendar;
 
 import julien.s.mareu.R;
-import julien.s.mareu.controller.TimePickerFragment;
 
 public class MeetingDialog extends AppCompatDialogFragment {
 
-    private TimePickerDialog picker;
-    private TextView mEditHour;
+    private TextView mEditHour, mEditDate;
     private EditText mEditSubject;
     private EditText mEditParticipants;
 
@@ -57,10 +59,28 @@ public class MeetingDialog extends AppCompatDialogFragment {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-                        mEditHour.setText(hourOfDay + " " + minute);
+                        mEditHour.setText(hourOfDay + "H" + minute);
                     }
                 });
                 timePicker.show(getFragmentManager(),"time picker");
+            }
+        });
+
+        mEditDate = view.findViewById(R.id.edit_date);
+        mEditDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerFragment datePicker = new DatePickerFragment();
+                datePicker.setPickerListener(new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        Calendar c = Calendar.getInstance();
+
+                        String currentDateString = DateFormat.getDateInstance(DateFormat.DAY_OF_WEEK_IN_MONTH_FIELD).format(c.getTime());
+                        mEditDate.setText(currentDateString);
+                    }
+                });
+                datePicker.show(getFragmentManager(),"date picker");
             }
         });
 

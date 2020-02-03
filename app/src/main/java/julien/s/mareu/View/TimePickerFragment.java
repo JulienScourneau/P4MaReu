@@ -1,9 +1,9 @@
-package julien.s.mareu.controller;
+package julien.s.mareu.View;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.widget.TimePicker;
+
 
 import androidx.fragment.app.DialogFragment;
 
@@ -25,6 +25,4 @@ public class TimePickerFragment extends DialogFragment {
         int minute = c.get(Calendar.MINUTE);
        return new TimePickerDialog(getActivity(),pickerListener,hour,minute,true);
     }
-
-
 }
