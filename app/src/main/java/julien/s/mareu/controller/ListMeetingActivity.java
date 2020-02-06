@@ -18,7 +18,7 @@ import julien.s.mareu.model.Meeting;
 import julien.s.mareu.model.TestMeetingList;
 
 
-public class ListMeetingActivity extends AppCompatActivity implements MeetingDialog.MeetingDialogListener {
+public class ListMeetingActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -51,8 +51,4 @@ public class ListMeetingActivity extends AppCompatActivity implements MeetingDia
 
     }
 
-    @Override
-    public void applyMeeting() {
-
-    }
 }

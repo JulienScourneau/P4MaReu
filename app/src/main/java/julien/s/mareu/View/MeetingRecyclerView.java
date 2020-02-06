@@ -9,8 +9,6 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
@@ -20,7 +18,7 @@ import julien.s.mareu.controller.DI;
 import julien.s.mareu.model.Meeting;
 
 public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerView.MeetingViewHolder> {
-    private final List<Meeting> mMeetingList;
+    private List<Meeting> mMeetingList;
 
     public class MeetingViewHolder extends RecyclerView.ViewHolder{
 
@@ -66,10 +64,6 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
         holder.mMeetingSubject.setText(mMeetings.getSubject());
         holder.mMeetingParticipant.setText(mMeetings.getParticipant());
         holder.mMeetingIcone.setBackgroundColor(mMeetings.getRandomColor());
-        Glide.with(holder.mMeetingIcone.getContext())
-                .load(mMeetings.getIcone())
-                .apply(RequestOptions.circleCropTransform())
-                .into(holder.mMeetingIcone);
 
         holder.mDeleteMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override

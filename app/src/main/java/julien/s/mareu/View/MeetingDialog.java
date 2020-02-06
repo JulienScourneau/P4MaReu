@@ -18,8 +18,11 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import julien.s.mareu.R;
+import julien.s.mareu.controller.DI;
+import julien.s.mareu.model.Meeting;
 
 public class MeetingDialog extends AppCompatDialogFragment {
 
@@ -27,6 +30,7 @@ public class MeetingDialog extends AppCompatDialogFragment {
     private TextView mEditHour, mEditDate;
     private EditText mEditSubject;
     private EditText mEditParticipants;
+    private List<String> participant;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -46,6 +50,8 @@ public class MeetingDialog extends AppCompatDialogFragment {
                         String hour = mEditHour.getText().toString();
                         String date = mEditDate.getText().toString();
                         String subject = mEditSubject.getText().toString();
+
+                        DI.getNewInstanceApiservice().addMeeting(new Meeting(room,hour,date,subject,participant));
 
                     }
                 })
