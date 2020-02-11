@@ -100,14 +100,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="76dp" />
+        app:layout_constraintGuide_end="340dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="226dp" />
+        app:layout_constraintGuide_end="230dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_room"
@@ -129,7 +129,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_begin="268dp"
+        app:layout_constraintGuide_begin="264dp"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

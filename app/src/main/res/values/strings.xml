@@ -5,4 +5,12 @@
     <string name="date_meeting">Date</string>
     <string name="subject_meeting">Sujet</string>
     <string name="participants_meeting">Participants</string>
+
+    <string-array name="Room_meeting">
+        <item>Salle A</item>
+        <item>Salle B</item>
+        <item>Salle C</item>
+        <item>Salle D</item>
+        <item>Salle E</item>
+    </string-array>
 </resources>

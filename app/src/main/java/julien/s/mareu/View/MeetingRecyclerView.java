@@ -27,6 +27,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
         public ImageView mMeetingIcone;
         public TextView mMeetingRoom;
         public TextView mMeetingHour;
+        public TextView mMeetingDate;
         public TextView mMeetingSubject;
         public TextView mMeetingParticipant;
 
@@ -35,6 +36,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
             mMeetingIcone = itemView.findViewById(R.id.item_icone_meeting);
             mMeetingRoom = itemView.findViewById(R.id.item_room_meeting);
             mMeetingHour = itemView.findViewById(R.id.item_hour_meeting);
+            mMeetingDate = itemView.findViewById(R.id.item_date_meeting);
             mMeetingSubject = itemView.findViewById(R.id.item_subject_meeting);
             mMeetingParticipant = itemView.findViewById(R.id.item_participant_meeting);
             mAddMeetingButton = itemView.findViewById(R.id.add_new_meeting_button);
@@ -43,15 +45,14 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
     }
 
     public MeetingRecyclerView(List<Meeting> meetingList) {
-        mMeetingList = meetingList;
+        this.mMeetingList = meetingList;
 
     }
 
     @Override
     public MeetingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_meeting, parent, false);
-        MeetingViewHolder viewHolder = new MeetingViewHolder(view);
-        return viewHolder;
+        return new MeetingViewHolder(view);
     }
 
     @Override
@@ -61,6 +62,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
 
         holder.mMeetingRoom.setText(mMeetings.getRoom());
         holder.mMeetingHour.setText(mMeetings.getHour());
+        holder.mMeetingDate.setText(mMeetings.getDate());
         holder.mMeetingSubject.setText(mMeetings.getSubject());
         holder.mMeetingParticipant.setText(mMeetings.getParticipant());
         holder.mMeetingIcone.setBackgroundColor(mMeetings.getRandomColor());
@@ -69,7 +71,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
             @Override
             public void onClick(View v) {
 
-                DI.getMeetingApiService().deleteMeeting(mMeetings);
+                DI.getMeetingApiService().deleteMeeting((Meeting)mMeetings);
                 removeItem(position);
             }
         });
@@ -80,8 +82,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
         return mMeetingList.size();
     }
 
-    public void removeItem (int position){
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, mMeetingList.size());
+    private void removeItem (int position){
+        notifyDataSetChanged();
     }
 }

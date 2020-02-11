@@ -20,20 +20,18 @@ import julien.s.mareu.model.TestMeetingList;
 
 public class ListMeetingActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    public FloatingActionButton mAddMeetingButton;
-    private List<Meeting> mMeetingList = TestMeetingList.getMeetingsList();
+    RecyclerView mRecyclerView;
+    RecyclerView.Adapter mAdapter;
+    RecyclerView.LayoutManager mLayoutManager;
+    FloatingActionButton mAddMeetingButton;
+    List<Meeting> mMeetingList = DI.getMeetingApiService().getMeetingsList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_meeting);
 
-
         mAddMeetingButton = findViewById(R.id.add_new_meeting_button);
-
         mAddMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,4 +49,10 @@ public class ListMeetingActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAdapter.notifyDataSetChanged();
+    }
 }

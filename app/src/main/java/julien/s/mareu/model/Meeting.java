@@ -12,19 +12,18 @@ public class Meeting {
     private String mHour;
     private String mDate;
     private String mSubject;
-    private List<String> mParticipantList;
-    private String mParticipants;
+    private String mParticipant;
 
     /**
      * Constructor
      *
      */
-    public Meeting(String room, String hour,String date, String subject, List<String> participant) {
+    public Meeting(String room, String hour,String date, String subject, String participant) {
         this.mRoom = room;
         this.mHour = hour;
         this.mDate = date;
         this.mSubject = subject;
-        this.mParticipantList = participant;
+        this.mParticipant = participant;
     }
 
     /**
@@ -51,12 +50,8 @@ public class Meeting {
         return mSubject;
     }
 
-    public List<String> getParticipantList(){
-        return mParticipantList;
-    }
-
     public String getParticipant(){
-        return mParticipants;
+        return mParticipant;
     }
 
     /**
@@ -83,16 +78,11 @@ public class Meeting {
         mSubject = subject;
     }
 
-    public void setParticipantList(List<String> participantList) {
-        mParticipantList = participantList;
-    }
-
     public void setParticipant(String participant) {
-        mParticipants = join(",",getParticipantList());
-
+        mParticipant = participant;
     }
 
-    private static String join(String separator, List<String> inputList) {
+    public static String join(String separator, List<String> inputList) {
 
         if (inputList == null || inputList.size() <= 0)
             return "";

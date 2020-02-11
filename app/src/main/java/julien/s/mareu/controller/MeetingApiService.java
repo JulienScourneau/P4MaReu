@@ -1,12 +1,13 @@
 package julien.s.mareu.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import julien.s.mareu.model.Meeting;
 
 public interface MeetingApiService {
 
-    ArrayList<Meeting> getMeetingsList();
+    List<Meeting> getMeetingsList();
 
     void addMeeting(Meeting meeting);
 
