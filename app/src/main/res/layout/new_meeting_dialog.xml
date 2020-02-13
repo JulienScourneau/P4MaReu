@@ -69,12 +69,22 @@
 
     <ImageButton
         android:id="@+id/add_participant_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:tint="@color/black"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:backgroundTint="@color/white"
         android:src="@android:drawable/ic_input_add"
+        android:tint="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/edit_participant"
         app:layout_constraintTop_toTopOf="@+id/edit_participant" />
+
+    <ImageButton
+        android:id="@+id/delete_participant_button"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@color/white"
+        android:src="@android:drawable/ic_input_delete"
+        android:tint="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/edit_participant"
+        app:layout_constraintTop_toBottomOf="@+id/add_participant_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

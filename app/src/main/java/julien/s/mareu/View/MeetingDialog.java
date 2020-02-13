@@ -30,10 +30,9 @@ public class MeetingDialog extends AppCompatDialogFragment {
 
     private Spinner mRoom;
     private TextView mEditHour, mEditDate;
-    private EditText mEditSubject;
-    private EditText mEditParticipant;
+    private EditText mEditSubject, mEditParticipant;
     private List<String> mParticipantList = new ArrayList<>();
-    private ImageButton mAddParticipant;
+    private ImageButton mAddParticipant, mDeleteParticipant;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -73,6 +72,7 @@ public class MeetingDialog extends AppCompatDialogFragment {
         mEditSubject = view.findViewById(R.id.edit_subject);
         mEditParticipant = view.findViewById(R.id.edit_participant);
         mAddParticipant = view.findViewById(R.id.add_participant_button);
+        mDeleteParticipant = view.findViewById(R.id.delete_participant_button);
 
         mEditHour.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +81,7 @@ public class MeetingDialog extends AppCompatDialogFragment {
                 timePicker.setPickerListener(new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
                         mEditHour.setText(String.format("%02d:%02d",hourOfDay,minute));
                     }
                 });
@@ -111,7 +112,20 @@ public class MeetingDialog extends AppCompatDialogFragment {
             public void onClick(View v) {
                 mParticipantList.add(mEditParticipant.getText().toString());
                 mEditParticipant.setHint(Meeting.join(",",mParticipantList));
+                mEditParticipant.setText("");
 
+            }
+        });
+
+        mDeleteParticipant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mParticipantList.size() == 0) {
+                    mEditParticipant.setHint("");
+                }else{
+                    mParticipantList.remove(mParticipantList.size()-1);
+                    mEditParticipant.setHint(Meeting.join(",",mParticipantList));
+                }
             }
         });
 
