@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
-        android:text="Subject meeting"
+        android:text="Sujet A"
         app:layout_constraintBottom_toBottomOf="@+id/item_card_view"
         app:layout_constraintStart_toEndOf="@+id/guideline_subject"
         app:layout_constraintTop_toTopOf="@+id/item_card_view" />

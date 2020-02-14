@@ -1,5 +1,6 @@
 package julien.s.mareu.controller;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -15,16 +19,16 @@ import julien.s.mareu.R;
 import julien.s.mareu.View.MeetingDialog;
 import julien.s.mareu.View.MeetingRecyclerView;
 import julien.s.mareu.model.Meeting;
-import julien.s.mareu.model.TestMeetingList;
+
 
 
 public class ListMeetingActivity extends AppCompatActivity {
 
-    RecyclerView mRecyclerView;
-    RecyclerView.Adapter mAdapter;
-    RecyclerView.LayoutManager mLayoutManager;
-    FloatingActionButton mAddMeetingButton;
-    List<Meeting> mMeetingList = DI.getMeetingApiService().getMeetingsList();
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private FloatingActionButton mAddMeetingButton;
+    private List<Meeting> mMeetingList = DI.getMeetingApiService().getMeetingsList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +53,29 @@ public class ListMeetingActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.filter_menu, menu);
+        return true;
+    }
 
     @Override
-    protected void onResume() {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_filtre_date:
+
+               return true;
+            case R.id.item_filtre_room:
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onResume() {
         super.onResume();
         mAdapter.notifyDataSetChanged();
     }

@@ -1,5 +1,6 @@
 package julien.s.mareu.View;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -14,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
@@ -24,10 +26,12 @@ import java.util.List;
 
 import julien.s.mareu.R;
 import julien.s.mareu.controller.DI;
+import julien.s.mareu.controller.MeetingApiService;
 import julien.s.mareu.model.Meeting;
 
 public class MeetingDialog extends AppCompatDialogFragment {
 
+    private MeetingApiService mApiService;
     private Spinner mRoom;
     private TextView mEditHour, mEditDate;
     private EditText mEditSubject, mEditParticipant;
@@ -40,6 +44,15 @@ public class MeetingDialog extends AppCompatDialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.new_meeting_dialog,null);
+
+        mRoom = view.findViewById(R.id.spinner_room);
+        mEditHour = view.findViewById(R.id.edit_hour);
+        mEditDate = view.findViewById(R.id.edit_date);
+        mEditSubject = view.findViewById(R.id.edit_subject);
+        mEditParticipant = view.findViewById(R.id.edit_participant);
+        mAddParticipant = view.findViewById(R.id.add_participant_button);
+        mDeleteParticipant = view.findViewById(R.id.delete_participant_button);
+        mApiService = DI.getMeetingApiService();
 
         builder.setView(view)
                 .setTitle("Nouvelle réunion")
@@ -54,8 +67,8 @@ public class MeetingDialog extends AppCompatDialogFragment {
                         String subject = mEditSubject.getText().toString();
                         String participant = Meeting.join(",",mParticipantList);
 
-                        DI.getNewInstanceApiservice().addMeeting(new Meeting(room,hour,date,subject,participant));
-
+                        mApiService.addMeeting(new Meeting(room,hour,date,subject,participant));
+                        mApiService.getMeetingsList();
                     }
                 })
 
@@ -63,16 +76,9 @@ public class MeetingDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+
                     }
                 });
-
-        mRoom = view.findViewById(R.id.spinner_room);
-        mEditHour = view.findViewById(R.id.edit_hour);
-        mEditDate = view.findViewById(R.id.edit_date);
-        mEditSubject = view.findViewById(R.id.edit_subject);
-        mEditParticipant = view.findViewById(R.id.edit_participant);
-        mAddParticipant = view.findViewById(R.id.add_participant_button);
-        mDeleteParticipant = view.findViewById(R.id.delete_participant_button);
 
         mEditHour.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,9 +116,15 @@ public class MeetingDialog extends AppCompatDialogFragment {
         mAddParticipant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mParticipantList.add(mEditParticipant.getText().toString());
-                mEditParticipant.setHint(Meeting.join(",",mParticipantList));
-                mEditParticipant.setText("");
+                String mUserText = mEditParticipant.getText().toString();
+
+                if (mUserText.matches("")){
+                    Toast.makeText(getActivity(),"Entrer un nom",Toast.LENGTH_SHORT).show();
+                }else{
+                    mParticipantList.add(mEditParticipant.getText().toString());
+                    mEditParticipant.setHint(Meeting.join(",",mParticipantList));
+                    mEditParticipant.setText("");
+                }
 
             }
         });
@@ -121,10 +133,12 @@ public class MeetingDialog extends AppCompatDialogFragment {
             @Override
             public void onClick(View v) {
                 if (mParticipantList.size() == 0) {
-                    mEditParticipant.setHint("");
+                    mEditParticipant.setHint("Participants");
+                    mEditParticipant.setText("");
                 }else{
                     mParticipantList.remove(mParticipantList.size()-1);
                     mEditParticipant.setHint(Meeting.join(",",mParticipantList));
+                    mEditParticipant.setText("");
                 }
             }
         });

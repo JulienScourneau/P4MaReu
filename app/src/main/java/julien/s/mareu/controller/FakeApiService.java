@@ -6,6 +6,7 @@ import java.util.List;
 import julien.s.mareu.model.Meeting;
 import julien.s.mareu.model.TestMeetingList;
 
+
 public class FakeApiService implements MeetingApiService {
 
     private List<Meeting> meetings = TestMeetingList.getMeetingsList();

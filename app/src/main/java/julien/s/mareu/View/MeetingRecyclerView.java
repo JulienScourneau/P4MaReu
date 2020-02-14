@@ -83,6 +83,6 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
     }
 
     private void removeItem (int position){
-        notifyDataSetChanged();
+        notifyItemRemoved(position);
     }
 }
