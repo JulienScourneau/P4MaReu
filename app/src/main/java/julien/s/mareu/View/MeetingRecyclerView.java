@@ -3,33 +3,35 @@ package julien.s.mareu.View;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import julien.s.mareu.R;
 import julien.s.mareu.controller.DI;
 import julien.s.mareu.model.Meeting;
 
-public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerView.MeetingViewHolder> {
+public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerView.MeetingViewHolder> implements Filterable {
     private List<Meeting> mMeetingList;
+    private List<Meeting> mFullMeetingList;
 
-    public class MeetingViewHolder extends RecyclerView.ViewHolder{
+    public class MeetingViewHolder extends RecyclerView.ViewHolder {
 
-        public FloatingActionButton mAddMeetingButton;
-        public ImageButton mDeleteMeetingButton;
-        public ImageView mMeetingIcone;
-        public TextView mMeetingRoom;
-        public TextView mMeetingHour;
-        public TextView mMeetingDate;
-        public TextView mMeetingSubject;
-        public TextView mMeetingParticipant;
+        private ImageButton mDeleteMeetingButton;
+        private ImageView mMeetingIcone;
+        private TextView mMeetingRoom;
+        private TextView mMeetingHour;
+        private TextView mMeetingDate;
+        private TextView mMeetingSubject;
+        private TextView mMeetingParticipant;
 
         public MeetingViewHolder(View itemView) {
             super(itemView);
@@ -39,24 +41,26 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
             mMeetingDate = itemView.findViewById(R.id.item_date_meeting);
             mMeetingSubject = itemView.findViewById(R.id.item_subject_meeting);
             mMeetingParticipant = itemView.findViewById(R.id.item_participant_meeting);
-            mAddMeetingButton = itemView.findViewById(R.id.add_new_meeting_button);
             mDeleteMeetingButton = itemView.findViewById(R.id.item_list_delete_button);
         }
     }
 
     public MeetingRecyclerView(List<Meeting> meetingList) {
         this.mMeetingList = meetingList;
+        mFullMeetingList = new ArrayList<>(mMeetingList);
 
     }
 
+    @NonNull
     @Override
     public MeetingViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_meeting, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.fragment_meeting, parent, false);
         return new MeetingViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(MeetingViewHolder holder, final int position) {
+    public void onBindViewHolder(MeetingViewHolder holder,final int position) {
 
         final Meeting mMeetings = mMeetingList.get(position);
 
@@ -71,7 +75,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
             @Override
             public void onClick(View v) {
 
-                DI.getMeetingApiService().deleteMeeting((Meeting)mMeetings);
+                DI.getMeetingApiService().deleteMeeting(mMeetings);
                 removeItem(position);
             }
         });
@@ -84,5 +88,40 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
 
     private void removeItem (int position){
         notifyItemRemoved(position);
+        notifyItemRangeChanged(position,getItemCount());
     }
+
+    @Override
+    public Filter getFilter() {
+        return meetingFilter;
+    }
+
+    private Filter meetingFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Meeting> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length()==0){
+                filteredList.addAll(mFullMeetingList);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Meeting meeting : mFullMeetingList) {
+                    if (meeting.getRoom().toLowerCase().contains(filterPattern)){
+                        filteredList.add(meeting);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            mMeetingList.clear();
+            mMeetingList.addAll((List)results.values);
+            notifyDataSetChanged();
+        }
+    };
 }

@@ -6,7 +6,7 @@
     <string name="subject_meeting">Sujet</string>
     <string name="participants_meeting">Participants</string>
 
-    <string-array name="Room_meeting">
+    <string-array name="room_meeting_list">
         <item>Salle A</item>
         <item>Salle B</item>
         <item>Salle C</item>

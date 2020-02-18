@@ -1,6 +1,5 @@
 package julien.s.mareu.View;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -60,23 +59,13 @@ public class MeetingDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Accepter", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-                        String room = mRoom.getSelectedItem().toString();
-                        String hour = mEditHour.getText().toString();
-                        String date = mEditDate.getText().toString();
-                        String subject = mEditSubject.getText().toString();
-                        String participant = Meeting.join(",",mParticipantList);
-
-                        mApiService.addMeeting(new Meeting(room,hour,date,subject,participant));
-                        mApiService.getMeetingsList();
+                        addNewMeeting();
                     }
                 })
 
                 .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-
                     }
                 });
 
@@ -116,33 +105,51 @@ public class MeetingDialog extends AppCompatDialogFragment {
         mAddParticipant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mUserText = mEditParticipant.getText().toString();
-
-                if (mUserText.matches("")){
-                    Toast.makeText(getActivity(),"Entrer un nom",Toast.LENGTH_SHORT).show();
-                }else{
-                    mParticipantList.add(mEditParticipant.getText().toString());
-                    mEditParticipant.setHint(Meeting.join(",",mParticipantList));
-                    mEditParticipant.setText("");
-                }
-
+                addNewParticipant();
             }
         });
 
         mDeleteParticipant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mParticipantList.size() == 0) {
-                    mEditParticipant.setHint("Participants");
-                    mEditParticipant.setText("");
-                }else{
-                    mParticipantList.remove(mParticipantList.size()-1);
-                    mEditParticipant.setHint(Meeting.join(",",mParticipantList));
-                    mEditParticipant.setText("");
-                }
+                deleteParticipant();
             }
         });
-
         return builder.create();
+    }
+
+    private void addNewParticipant(){
+
+        if (mEditParticipant.getText().toString().matches("")){
+            Toast.makeText(getActivity(),"Entrer un nom",Toast.LENGTH_SHORT).show();
+        }else{
+            mParticipantList.add(mEditParticipant.getText().toString());
+            mEditParticipant.setHint(Meeting.join(",",mParticipantList));
+            mEditParticipant.setText("");
+        }
+    }
+
+    private void deleteParticipant(){
+
+        if (mParticipantList.size() == 0) {
+            mEditParticipant.setHint("Participants");
+            mEditParticipant.setText("");
+        }else{
+            mParticipantList.remove(mParticipantList.size()-1);
+            mEditParticipant.setHint(Meeting.join(",",mParticipantList));
+            mEditParticipant.setText("");
+        }
+    }
+
+    private void addNewMeeting(){
+
+        String room = mRoom.getSelectedItem().toString();
+        String hour = mEditHour.getText().toString();
+        String date = mEditDate.getText().toString();
+        String subject = mEditSubject.getText().toString();
+        String participant = Meeting.join(",",mParticipantList);
+
+        mApiService.addMeeting(new Meeting(room,hour,date,subject,participant));
+        mApiService.getMeetingsList();
     }
 }

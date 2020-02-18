@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import android.os.Bundle;
@@ -20,20 +22,22 @@ import julien.s.mareu.View.MeetingDialog;
 import julien.s.mareu.View.MeetingRecyclerView;
 import julien.s.mareu.model.Meeting;
 
-
-
 public class ListMeetingActivity extends AppCompatActivity {
 
+    private MeetingApiService mApiService = DI.getMeetingApiService();
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private MeetingRecyclerView mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private FloatingActionButton mAddMeetingButton;
-    private List<Meeting> mMeetingList = DI.getMeetingApiService().getMeetingsList();
+    private List<Meeting> mMeetingList = mApiService.getMeetingsList();
+    private List<String> mMeetingRoom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_meeting);
+
+        mMeetingRoom = Arrays.asList(getResources().getStringArray(R.array.room_meeting_list));
 
         mAddMeetingButton = findViewById(R.id.add_new_meeting_button);
         mAddMeetingButton.setOnClickListener(new View.OnClickListener() {
@@ -64,14 +68,19 @@ public class ListMeetingActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_filtre_date:
-
-               return true;
+                return true;
             case R.id.item_filtre_room:
 
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void filterRoom(){
+
+       // mAdapter.getFilter().filter(Collections.sort(mMeetingRoom));
+
     }
 
     @Override

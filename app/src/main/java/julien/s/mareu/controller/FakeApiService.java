@@ -1,11 +1,9 @@
 package julien.s.mareu.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import julien.s.mareu.model.Meeting;
 import julien.s.mareu.model.TestMeetingList;
-
 
 public class FakeApiService implements MeetingApiService {
 
