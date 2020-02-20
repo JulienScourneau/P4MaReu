@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import android.os.Bundle;
@@ -79,7 +78,7 @@ public class ListMeetingActivity extends AppCompatActivity {
 
     private void filterRoom(){
 
-       // mAdapter.getFilter().filter(Collections.sort(mMeetingRoom));
+        mAdapter.getFilter();
 
     }
 

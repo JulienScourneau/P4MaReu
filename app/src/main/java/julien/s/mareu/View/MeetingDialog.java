@@ -30,7 +30,7 @@ import julien.s.mareu.model.Meeting;
 
 public class MeetingDialog extends AppCompatDialogFragment {
 
-    private MeetingApiService mApiService;
+    private MeetingApiService mApiService = DI.getMeetingApiService();;
     private Spinner mRoom;
     private TextView mEditHour, mEditDate;
     private EditText mEditSubject, mEditParticipant;
@@ -39,8 +39,8 @@ public class MeetingDialog extends AppCompatDialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.new_meeting_dialog,null);
 
@@ -51,7 +51,6 @@ public class MeetingDialog extends AppCompatDialogFragment {
         mEditParticipant = view.findViewById(R.id.edit_participant);
         mAddParticipant = view.findViewById(R.id.add_participant_button);
         mDeleteParticipant = view.findViewById(R.id.delete_participant_button);
-        mApiService = DI.getMeetingApiService();
 
         builder.setView(view)
                 .setTitle("Nouvelle réunion")
@@ -72,33 +71,14 @@ public class MeetingDialog extends AppCompatDialogFragment {
         mEditHour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimePickerFragment timePicker = new TimePickerFragment();
-                timePicker.setPickerListener(new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-                        mEditHour.setText(String.format("%02d:%02d",hourOfDay,minute));
-                    }
-                });
-                timePicker.show(getFragmentManager(),"time picker");
+                openTimePicker();
             }
         });
 
         mEditDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerFragment datePicker = new DatePickerFragment();
-                datePicker.setPickerListener(new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        Calendar c = Calendar.getInstance();
-                        c.set(year,month,dayOfMonth);
-
-                        SimpleDateFormat format = new SimpleDateFormat("dd/MM");
-                        mEditDate.setText(format.format(c.getTime()));
-                    }
-                });
-                datePicker.show(getFragmentManager(),"date picker");
+                openDatePicker();
             }
         });
 
@@ -151,5 +131,34 @@ public class MeetingDialog extends AppCompatDialogFragment {
 
         mApiService.addMeeting(new Meeting(room,hour,date,subject,participant));
         mApiService.getMeetingsList();
+    }
+
+    private void openTimePicker(){
+
+        TimePickerFragment timePicker = new TimePickerFragment();
+        timePicker.setPickerListener(new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                mEditHour.setText(String.format("%02d:%02d",hourOfDay,minute));
+            }
+        });
+        timePicker.show(getFragmentManager(),"time picker");
+    }
+
+    private void openDatePicker(){
+
+        DatePickerFragment datePicker = new DatePickerFragment();
+        datePicker.setPickerListener(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Calendar c = Calendar.getInstance();
+                c.set(year,month,dayOfMonth);
+
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM");
+                mEditDate.setText(format.format(c.getTime()));
+            }
+        });
+        datePicker.show(getFragmentManager(),"date picker");
     }
 }

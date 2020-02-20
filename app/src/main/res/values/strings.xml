@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">MaRéu</string>
-    <string name="room_meeting">Salle</string>
+    <string name="room_meeting">Salle A</string>
     <string name="hour_meeting">Heure</string>
     <string name="date_meeting">Date</string>
-    <string name="subject_meeting">Sujet</string>
-    <string name="participants_meeting">Participants</string>
+    <string name="subject_meeting">Sujet A</string>
+    <string name="participants_meeting">Participants1,Participants2</string>
 
     <string-array name="room_meeting_list">
         <item>Salle A</item>
