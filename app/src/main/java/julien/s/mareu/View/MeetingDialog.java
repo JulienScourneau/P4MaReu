@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -140,7 +141,7 @@ public class MeetingDialog extends AppCompatDialogFragment {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-                mEditHour.setText(String.format("%02d:%02d",hourOfDay,minute));
+                mEditHour.setText(String.format("%02dh%02d",hourOfDay,minute));
             }
         });
         timePicker.show(getFragmentManager(),"time picker");

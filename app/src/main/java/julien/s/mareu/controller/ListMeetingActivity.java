@@ -6,9 +6,12 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import android.os.Bundle;
@@ -71,6 +74,7 @@ public class ListMeetingActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_filtre_date:
+                sortDate();
                 return true;
             case R.id.item_filtre_room:
                 sortRoom();
@@ -81,14 +85,22 @@ public class ListMeetingActivity extends AppCompatActivity {
     }
 
     private void sortRoom(){
-
         Collections.sort(mMeetingList, new Comparator<Meeting>() {
             @Override
             public int compare(Meeting o1, Meeting o2) {
                 return o1.getRoom().compareTo(o2.getRoom());
             }
         });
+        mAdapter.notifyDataSetChanged();
+    }
 
+    private void sortDate(){
+        Collections.sort(mMeetingList, new Comparator<Meeting>() {
+            @Override
+            public int compare(Meeting o1, Meeting o2) {
+                return  o1.convertToDate(o1.getHour()).compareTo(o2.convertToDate(o2.getHour()));
+            }
+        });
         mAdapter.notifyDataSetChanged();
     }
 

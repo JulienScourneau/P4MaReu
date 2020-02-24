@@ -2,6 +2,9 @@ package julien.s.mareu.model;
 
 import android.graphics.Color;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -19,6 +22,7 @@ public class Meeting {
      *
      */
     public Meeting(String room, String hour,String date, String subject, String participant) {
+
         this.mRoom = room;
         this.mHour = hour;
         this.mDate = date;
@@ -59,7 +63,7 @@ public class Meeting {
      *
      */
     public void setIcone(int icone){
-        mIcone = icone;
+        mIcone = getRandomColor();
     }
 
     public void setRoom(String room) {
@@ -103,5 +107,17 @@ public class Meeting {
     public int getRandomColor(){
         Random rnd = new Random();
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256),rnd.nextInt(256));
+    }
+
+    public Date convertToDate(String dateString){
+        dateString = getDate() +" "+ getHour();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM hh'h'mm");
+        Date convertedDate = new Date();
+        try{
+            convertedDate = dateFormat.parse(dateString);
+        } catch (ParseException e){
+            e.printStackTrace();
+        }
+        return convertedDate;
     }
 }

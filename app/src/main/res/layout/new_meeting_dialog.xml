@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit_participant"
-        android:hint="@string/subject_meeting"
+        android:hint="Sujet"
         app:layout_constraintTop_toBottomOf="@+id/edit_hour"
         app:layout_constraintEnd_toStartOf="@id/add_participant_button"/>
 
@@ -63,7 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit_hour"
-        android:hint="@string/participants_meeting"
+        android:hint="Participant"
         app:layout_constraintTop_toBottomOf="@+id/edit_subject" />
 
     <ImageButton
