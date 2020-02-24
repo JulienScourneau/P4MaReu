@@ -2,10 +2,13 @@ package julien.s.mareu.controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import android.os.Bundle;
@@ -60,6 +63,7 @@ public class ListMeetingActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.filter_menu, menu);
+
         return true;
     }
 
@@ -69,17 +73,23 @@ public class ListMeetingActivity extends AppCompatActivity {
             case R.id.item_filtre_date:
                 return true;
             case R.id.item_filtre_room:
-
+                sortRoom();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void filterRoom(){
+    private void sortRoom(){
 
-        mAdapter.getFilter();
+        Collections.sort(mMeetingList, new Comparator<Meeting>() {
+            @Override
+            public int compare(Meeting o1, Meeting o2) {
+                return o1.getRoom().compareTo(o2.getRoom());
+            }
+        });
 
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
