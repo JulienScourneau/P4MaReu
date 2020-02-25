@@ -109,8 +109,8 @@ public class Meeting {
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256),rnd.nextInt(256));
     }
 
-    public Date convertToDate(String dateString){
-        dateString = getDate() +" "+ getHour();
+    public Date convertToDate(){
+        String dateString = getDate() +" "+ getHour();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM hh'h'mm");
         Date convertedDate = new Date();
         try{
