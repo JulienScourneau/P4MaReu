@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import android.os.Bundle;
@@ -31,14 +29,12 @@ public class ListMeetingActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private FloatingActionButton mAddMeetingButton;
     private List<Meeting> mMeetingList = mApiService.getMeetingsList();
-    private List<String> mMeetingRoom;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_meeting);
-
-        mMeetingRoom = Arrays.asList(getResources().getStringArray(R.array.room_meeting_list));
 
         mAddMeetingButton = findViewById(R.id.add_new_meeting_button);
         mAddMeetingButton.setOnClickListener(new View.OnClickListener() {

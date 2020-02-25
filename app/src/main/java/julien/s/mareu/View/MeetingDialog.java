@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,6 +44,14 @@ public class MeetingDialog extends AppCompatDialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.new_meeting_dialog,null);
 
+        initView(view);
+        setUpBuilder(builder,view);
+        setUpListener();
+
+        return builder.create();
+    }
+
+    private void initView(View view){
         mRoom = view.findViewById(R.id.spinner_room);
         mEditHour = view.findViewById(R.id.edit_hour);
         mEditDate = view.findViewById(R.id.edit_date);
@@ -52,23 +59,25 @@ public class MeetingDialog extends AppCompatDialogFragment {
         mEditParticipant = view.findViewById(R.id.edit_participant);
         mAddParticipant = view.findViewById(R.id.add_participant_button);
         mDeleteParticipant = view.findViewById(R.id.delete_participant_button);
+    }
 
+    private void setUpBuilder (AlertDialog.Builder builder, View view){
         builder.setView(view)
                 .setTitle("Nouvelle réunion")
-
                 .setPositiveButton("Accepter", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         addNewMeeting();
                     }
                 })
-
                 .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
                 });
+    }
 
+    private void setUpListener(){
         mEditHour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,46 +105,9 @@ public class MeetingDialog extends AppCompatDialogFragment {
                 deleteParticipant();
             }
         });
-        return builder.create();
-    }
-
-    private void addNewParticipant(){
-
-        if (mEditParticipant.getText().toString().matches("")){
-            Toast.makeText(getActivity(),"Entrer un nom",Toast.LENGTH_SHORT).show();
-        }else{
-            mParticipantList.add(mEditParticipant.getText().toString());
-            mEditParticipant.setHint(Meeting.join(",",mParticipantList));
-            mEditParticipant.setText("");
-        }
-    }
-
-    private void deleteParticipant(){
-
-        if (mParticipantList.size() == 0) {
-            mEditParticipant.setHint("Participants");
-            mEditParticipant.setText("");
-        }else{
-            mParticipantList.remove(mParticipantList.size()-1);
-            mEditParticipant.setHint(Meeting.join(",",mParticipantList));
-            mEditParticipant.setText("");
-        }
-    }
-
-    private void addNewMeeting(){
-
-        String room = mRoom.getSelectedItem().toString();
-        String hour = mEditHour.getText().toString();
-        String date = mEditDate.getText().toString();
-        String subject = mEditSubject.getText().toString();
-        String participant = Meeting.join(",",mParticipantList);
-
-        mApiService.addMeeting(new Meeting(room,hour,date,subject,participant));
-        mApiService.getMeetingsList();
     }
 
     private void openTimePicker(){
-
         TimePickerFragment timePicker = new TimePickerFragment();
         timePicker.setPickerListener(new TimePickerDialog.OnTimeSetListener() {
             @Override
@@ -148,7 +120,6 @@ public class MeetingDialog extends AppCompatDialogFragment {
     }
 
     private void openDatePicker(){
-
         DatePickerFragment datePicker = new DatePickerFragment();
         datePicker.setPickerListener(new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -161,5 +132,37 @@ public class MeetingDialog extends AppCompatDialogFragment {
             }
         });
         datePicker.show(getFragmentManager(),"date picker");
+    }
+
+    private void addNewParticipant(){
+        if (mEditParticipant.getText().toString().matches("")){
+            Toast.makeText(getActivity(),"Entrer un nom",Toast.LENGTH_SHORT).show();
+        }else{
+            mParticipantList.add(mEditParticipant.getText().toString());
+            mEditParticipant.setHint(Meeting.join(",",mParticipantList));
+            mEditParticipant.setText("");
+        }
+    }
+
+    private void deleteParticipant(){
+        if (mParticipantList.size() == 0) {
+            mEditParticipant.setHint("Participants");
+            mEditParticipant.setText("");
+        }else{
+            mParticipantList.remove(mParticipantList.size()-1);
+            mEditParticipant.setHint(Meeting.join(",",mParticipantList));
+            mEditParticipant.setText("");
+        }
+    }
+
+    private void addNewMeeting(){
+        String room = mRoom.getSelectedItem().toString();
+        String hour = mEditHour.getText().toString();
+        String date = mEditDate.getText().toString();
+        String subject = mEditSubject.getText().toString();
+        String participant = Meeting.join(",",mParticipantList);
+
+        mApiService.addMeeting(new Meeting(room,hour,date,subject,participant));
+        mApiService.getMeetingsList();
     }
 }
