@@ -2,6 +2,7 @@ package julien.s.mareu.controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,6 +48,21 @@ public class ListMeetingActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.filter_menu, menu);
 
+        MenuItem searchItem = menu.findItem(R.id.item_filtre_room);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -55,10 +71,6 @@ public class ListMeetingActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.item_filtre_date:
                 mApiService.sortMeetingByDate();
-                mAdapter.notifyDataSetChanged();
-                return true;
-            case R.id.item_filtre_room:
-                mApiService.sortMeetingByRoom();
                 mAdapter.notifyDataSetChanged();
                 return true;
             default:

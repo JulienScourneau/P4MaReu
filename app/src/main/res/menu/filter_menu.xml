@@ -16,9 +16,11 @@
                 app:showAsAction="ifRoom"/>
 
             <item android:id="@+id/item_filtre_room"
-                android:icon="@drawable/ic_expand_more"
+                android:icon="@drawable/ic_search"
                 android:title="Salle"
-                app:showAsAction="ifRoom" />
+                app:showAsAction="ifRoom|collapseActionView"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"
+                />
         </menu>
     </item>
 </menu>
