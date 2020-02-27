@@ -5,7 +5,8 @@
     android:id="@+id/fragment_item_meeting"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:background="@color/white"
+    >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/item_card_view"
@@ -22,8 +23,8 @@
 
         <ImageView
             android:id="@+id/item_icone_meeting"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@color/gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,9 +38,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:text="@string/subject_meeting"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/item_card_view"
         app:layout_constraintStart_toEndOf="@+id/guideline_subject"
-        app:layout_constraintTop_toTopOf="@+id/item_card_view" />
+        app:layout_constraintTop_toTopOf="@+id/item_card_view"
+        />
 
     <TextView
         android:id="@+id/item_hour_meeting"
@@ -47,9 +50,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:text="00h00"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/item_card_view"
         app:layout_constraintStart_toEndOf="@+id/guideline_hour"
-        app:layout_constraintTop_toTopOf="@+id/item_card_view" />
+        app:layout_constraintTop_toTopOf="@+id/item_card_view"
+        />
 
     <TextView
         android:id="@+id/item_date_meeting"
@@ -57,9 +62,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:text="00/00"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="@+id/item_card_view"
         app:layout_constraintBottom_toBottomOf="@+id/item_card_view"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_date"/>
+        app:layout_constraintEnd_toStartOf="@+id/guideline_date"
+        />
 
     <TextView
         android:id="@+id/item_room_meeting"
@@ -67,10 +74,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="28dp"
         android:text="@string/room_meeting"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/item_card_view"
         app:layout_constraintEnd_toStartOf="@+id/guideline_room_end"
         app:layout_constraintStart_toEndOf="@+id/guideline_room"
-        app:layout_constraintTop_toTopOf="@+id/item_card_view" />
+        app:layout_constraintTop_toTopOf="@+id/item_card_view"
+        />
 
     <TextView
         android:id="@+id/item_participant_meeting"
@@ -84,7 +93,8 @@
         app:layout_constraintEnd_toStartOf="@id/guideline_room_end"
         app:layout_constraintStart_toStartOf="@+id/item_subject_meeting"
         app:layout_constraintTop_toBottomOf="@+id/item_subject_meeting"
-        app:layout_constraintWidth_max="370dp" />
+        app:layout_constraintWidth_max="370dp"
+        />
 
     <ImageButton
         android:id="@+id/item_list_delete_button"
@@ -96,35 +106,39 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/ic_delete_white_24dp" />
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_subject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="340dp" />
+        app:layout_constraintGuide_end="340dp"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_hour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="230dp" />
+        app:layout_constraintGuide_end="230dp"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="276dp" />
+        app:layout_constraintGuide_begin="276dp"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_room_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="370dp" />
+        app:layout_constraintGuide_begin="370dp"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_date"
@@ -133,6 +147,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintGuide_begin="264dp"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

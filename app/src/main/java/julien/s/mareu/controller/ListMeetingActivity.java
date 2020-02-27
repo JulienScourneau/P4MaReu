@@ -2,10 +2,10 @@ package julien.s.mareu.controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.Arrays;
 import java.util.List;
 
 import android.os.Bundle;
@@ -29,29 +29,17 @@ public class ListMeetingActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private FloatingActionButton mAddMeetingButton;
     private List<Meeting> mMeetingList = mApiService.getMeetingsList();
-
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_meeting);
 
-        mAddMeetingButton = findViewById(R.id.add_new_meeting_button);
-        mAddMeetingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MeetingDialog meetingDialog = new MeetingDialog();
-                meetingDialog.show(getSupportFragmentManager(),"meeting dialog");
-            }
-        });
-
-        mRecyclerView = findViewById(R.id.recyclerView);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new MeetingRecyclerView(mMeetingList);
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
-
+        initView();
+        setUpListener();
+        setSupportActionBar(mToolbar);
+        setUpRecyclerView();
     }
 
     @Override
@@ -59,7 +47,7 @@ public class ListMeetingActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.filter_menu, menu);
 
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -76,6 +64,29 @@ public class ListMeetingActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void initView(){
+        mToolbar = findViewById(R.id.toolbar);
+        mAddMeetingButton = findViewById(R.id.add_new_meeting_button);
+    }
+
+    private void setUpListener(){
+        mAddMeetingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MeetingDialog meetingDialog = new MeetingDialog();
+                meetingDialog.show(getSupportFragmentManager(),"meeting dialog");
+            }
+        });
+    }
+
+    private void setUpRecyclerView(){
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mLayoutManager = new LinearLayoutManager(this);
+        mAdapter = new MeetingRecyclerView(mMeetingList);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
