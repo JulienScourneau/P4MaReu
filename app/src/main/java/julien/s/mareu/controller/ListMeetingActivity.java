@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Collections;
 import java.util.List;
 
 import android.os.Bundle;
@@ -25,6 +26,7 @@ import julien.s.mareu.model.Meeting;
 public class ListMeetingActivity extends AppCompatActivity {
 
     private MeetingApiService mApiService = DI.getMeetingApiService();
+    private Boolean mSortMeeting = true;
     private RecyclerView mRecyclerView;
     private MeetingRecyclerView mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -48,6 +50,7 @@ public class ListMeetingActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.filter_menu, menu);
 
+
         MenuItem searchItem = menu.findItem(R.id.item_filtre_room);
         SearchView searchView = (SearchView) searchItem.getActionView();
 
@@ -70,8 +73,18 @@ public class ListMeetingActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_filtre_date:
-                mApiService.sortMeetingByDate();
-                mAdapter.notifyDataSetChanged();
+                if(mSortMeeting == true){
+                    mApiService.sortMeetingByDate();
+                    mSortMeeting = false;
+                    item.setIcon(R.drawable.ic_expand_less);
+                    mAdapter.notifyDataSetChanged();
+                } else {
+                    mApiService.sortMeetingByDate();
+                    Collections.reverse(mMeetingList);
+                    mSortMeeting = true;
+                    item.setIcon(R.drawable.ic_expand_more);
+                    mAdapter.notifyDataSetChanged();
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
