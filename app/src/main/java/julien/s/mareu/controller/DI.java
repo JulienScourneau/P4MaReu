@@ -7,4 +7,8 @@ public class DI {
     public static MeetingApiService getMeetingApiService(){
         return service;
     }
+
+    public static MeetingApiService getNewApiService(){
+        return new FakeApiService();
+    }
 }

@@ -106,7 +106,8 @@ public class Meeting {
 
     public int getRandomColor(){
         Random rnd = new Random();
-        return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256),rnd.nextInt(256));
+        int colorCode = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256),rnd.nextInt(256));
+        return colorCode;
     }
 
     public Date convertToDate(){
