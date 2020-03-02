@@ -107,7 +107,7 @@ public class ListMeetingActivity extends AppCompatActivity {
     }
 
     private void setUpRecyclerView(){
-        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView = findViewById(R.id.list_meeting);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new MeetingRecyclerView(mMeetingList);
         mRecyclerView.setLayoutManager(mLayoutManager);

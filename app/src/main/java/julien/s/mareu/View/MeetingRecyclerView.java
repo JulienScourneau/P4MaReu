@@ -26,7 +26,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
     public class MeetingViewHolder extends RecyclerView.ViewHolder {
 
         private ImageButton mDeleteMeetingButton;
-        private ImageView mMeetingIcone;
+        private ImageView mMeetingIcon;
         private TextView mMeetingRoom;
         private TextView mMeetingHour;
         private TextView mMeetingDate;
@@ -35,13 +35,13 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
 
         public MeetingViewHolder(View itemView) {
             super(itemView);
-            mMeetingIcone = itemView.findViewById(R.id.item_icone_meeting);
+            mMeetingIcon = itemView.findViewById(R.id.item_icone_meeting);
             mMeetingRoom = itemView.findViewById(R.id.item_room_meeting);
             mMeetingHour = itemView.findViewById(R.id.item_hour_meeting);
             mMeetingDate = itemView.findViewById(R.id.item_date_meeting);
             mMeetingSubject = itemView.findViewById(R.id.item_subject_meeting);
             mMeetingParticipant = itemView.findViewById(R.id.item_participant_meeting);
-            mDeleteMeetingButton = itemView.findViewById(R.id.item_list_delete_button);
+            mDeleteMeetingButton = itemView.findViewById(R.id.item_list_delete_meeting_button);
         }
     }
 
@@ -69,7 +69,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
         holder.mMeetingDate.setText(mMeetings.getDate());
         holder.mMeetingSubject.setText(mMeetings.getSubject());
         holder.mMeetingParticipant.setText(mMeetings.getParticipant());
-        holder.mMeetingIcone.setBackgroundColor(mMeetings.getRandomColor());
+        //holder.mMeetingIcon.setBackgroundColor(mMeetings.getRandomColor());
 
         holder.mDeleteMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
