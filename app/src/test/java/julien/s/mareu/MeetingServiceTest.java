@@ -19,9 +19,11 @@ import static org.junit.Assert.*;
 public class MeetingServiceTest {
 
     private MeetingApiService service;
+    private MeetingApiService mApiService;
 
     @Before
     public void setup(){
+        mApiService = DI.getMeetingApiService();
         service = DI.getNewApiService();
     }
 
@@ -49,7 +51,10 @@ public class MeetingServiceTest {
 
     @Test
     public void SortMeetingByDateWithSuccess(){
-        List<Meeting> meetingSortList = service.getMeetingsList();
         List<Meeting> meetingExpectedList = service.getMeetingsList();
+        mApiService.sortMeetingByDate();
+        assertEquals(meetingExpectedList.get(2),mApiService.getMeetingsList().get(0));
+        assertEquals(meetingExpectedList.get(4),mApiService.getMeetingsList().get(3));
+
     }
 }

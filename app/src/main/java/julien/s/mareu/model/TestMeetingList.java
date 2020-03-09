@@ -11,7 +11,7 @@ public abstract class TestMeetingList {
            new Meeting("Salle A","17h45","02/03","Sujet interessant","Participant1,Participant2,Participant3"),
            new Meeting("Salle B","16h45","26/02","Sujet important","Participant1,Participant2,Participant3,Participant4"),
            new Meeting("Salle E","15h20","12/03","Sujet 5","Participant1,Participant2,Participant3"),
-           new Meeting("Salle D","12h05","14/03","Sujet 2","Participant1,Participant2")
+           new Meeting("Salle D","15h20","11/03","Sujet 2","Participant1,Participant2")
    );
 
    public static List<Meeting> getFakeMeetingsList() {
