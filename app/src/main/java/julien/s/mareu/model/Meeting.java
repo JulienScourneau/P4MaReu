@@ -23,6 +23,7 @@ public class Meeting {
      */
     public Meeting(String room, String hour,String date, String subject, String participant) {
 
+        this.mIcone = getRandomColor();
         this.mRoom = room;
         this.mHour = hour;
         this.mDate = date;

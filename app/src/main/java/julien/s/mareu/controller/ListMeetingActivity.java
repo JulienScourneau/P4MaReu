@@ -25,13 +25,13 @@ import julien.s.mareu.model.Meeting;
 
 public class ListMeetingActivity extends AppCompatActivity {
 
-    private MeetingApiService mApiService = DI.getMeetingApiService();
-    private Boolean mSortMeeting = true;
+    private MeetingApiService mApiService ;
+    private Boolean mSortMeeting;
     private RecyclerView mRecyclerView;
     private MeetingRecyclerView mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private FloatingActionButton mAddMeetingButton;
-    private List<Meeting> mMeetingList = mApiService.getMeetingsList();
+    private List<Meeting> mMeetingList;
     private Toolbar mToolbar;
 
     @Override
@@ -49,7 +49,6 @@ public class ListMeetingActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.filter_menu, menu);
-
 
         MenuItem searchItem = menu.findItem(R.id.item_filtre_room);
         SearchView searchView = (SearchView) searchItem.getActionView();
@@ -92,8 +91,12 @@ public class ListMeetingActivity extends AppCompatActivity {
     }
 
     private void initView(){
+        mApiService = DI.getMeetingApiService();
         mToolbar = findViewById(R.id.toolbar);
         mAddMeetingButton = findViewById(R.id.add_new_meeting_button);
+        mMeetingList = mApiService.getMeetingsList();
+        mSortMeeting = true;
+
     }
 
     private void setUpListener(){

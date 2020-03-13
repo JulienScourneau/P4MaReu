@@ -27,16 +27,6 @@ public class FakeApiService implements MeetingApiService {
     }
 
     @Override
-    public void sortMeetingByRoom() {
-        Collections.sort(meetings, new Comparator<Meeting>() {
-            @Override
-            public int compare(Meeting o1, Meeting o2) {
-                return o1.getRoom().compareTo(o2.getRoom());
-            }
-        });
-    }
-
-    @Override
     public void sortMeetingByDate() {
         Collections.sort(meetings, new Comparator<Meeting>() {
             @Override

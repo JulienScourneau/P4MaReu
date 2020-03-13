@@ -12,7 +12,5 @@ public interface MeetingApiService {
 
     void deleteMeeting(Meeting meeting);
 
-    void sortMeetingByRoom();
-
     void sortMeetingByDate();
 }

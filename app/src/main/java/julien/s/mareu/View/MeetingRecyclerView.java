@@ -17,9 +17,11 @@ import java.util.List;
 
 import julien.s.mareu.R;
 import julien.s.mareu.controller.DI;
+import julien.s.mareu.controller.MeetingApiService;
 import julien.s.mareu.model.Meeting;
 
 public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerView.MeetingViewHolder> implements Filterable {
+    private MeetingApiService mApiService = DI.getMeetingApiService();
     private List<Meeting> mMeetingList;
     private List<Meeting> mFullMeetingList;
 
@@ -47,7 +49,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
 
     public MeetingRecyclerView(List<Meeting> meetingList) {
         this.mMeetingList = meetingList;
-        mFullMeetingList = new ArrayList<>(mMeetingList);
+        this.mFullMeetingList = new ArrayList<>(mMeetingList);
 
     }
 
@@ -69,7 +71,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
         holder.mMeetingDate.setText(mMeetings.getDate());
         holder.mMeetingSubject.setText(mMeetings.getSubject());
         holder.mMeetingParticipant.setText(mMeetings.getParticipant());
-        //holder.mMeetingIcon.setBackgroundColor(mMeetings.getRandomColor());
+        holder.mMeetingIcon.setBackgroundColor(mMeetings.getIcone());
 
         holder.mDeleteMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +108,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
-                for (Meeting meeting : mFullMeetingList) {
+                for (Meeting meeting : mApiService.getMeetingsList()) {
                     if (meeting.getRoom().toLowerCase().contains(filterPattern)){
                         filteredList.add(meeting);
                     }
