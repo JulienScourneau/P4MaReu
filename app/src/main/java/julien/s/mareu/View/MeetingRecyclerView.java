@@ -102,6 +102,9 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             List<Meeting> filteredList = new ArrayList<>();
+            FilterResults results = new FilterResults();
+            mMeetingList = mApiService.getMeetingsList();
+            mFullMeetingList = mMeetingList;
 
             if (constraint == null || constraint.length()==0){
                 filteredList.addAll(mFullMeetingList);
@@ -114,15 +117,14 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
                     }
                 }
             }
-            FilterResults results = new FilterResults();
+            results.count = filteredList.size();
             results.values = filteredList;
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            mMeetingList.clear();
-            mMeetingList.addAll((List)results.values);
+            mMeetingList = (List) results.values;
             notifyDataSetChanged();
         }
     };
