@@ -1,10 +1,17 @@
 package julien.s.mareu.meeting_list;
 
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
+
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.ActivityTestRule;
 
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -82,13 +89,13 @@ public class MeetingsListTest {
     }
 
     @Test
-    public void myMeetingList_onClickTrashCan_removeItem() {
+    public void myMeetingList_removeItem_FromTheList() {
         onView(withId(R.id.list_meeting))
-                .check(withItemCount(ITEM+1));
+                .check(withItemCount(ITEM));
         onView(withId(R.id.list_meeting))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, new DeleteViewAction()));
         onView(withId(R.id.list_meeting))
-                .check(withItemCount(ITEM));
+                .check(withItemCount(ITEM-1));
 
     }
 
@@ -98,7 +105,43 @@ public class MeetingsListTest {
                 .perform(click());
         onView(allOf(withId(R.id.title), withText("Date"), isDisplayed()))
                 .perform(click());
+        onView(allOf(withId(R.id.item_hour_meeting),
+                childAtPosition(allOf(withId(R.id.fragment_item_meeting), childAtPosition(withId(R.id.list_meeting), 0)), 2), isDisplayed()))
+                .check(matches(withText("16h45")));
     }
 
+    @Test
+    public void myMeetingList_filterMeetingRoom(){
+        onView(withId(R.id.menu_bar))
+                .perform(click());
+        onView(allOf(withId(R.id.title), withText("Salle"),isDisplayed()))
+                .perform(click());
+        onView(withId(R.id.search_src_text))
+                .perform(click());
+        onView(withId(R.id.search_src_text))
+                .perform(replaceText("Salle A"), closeSoftKeyboard());
+        onView(withId(R.id.item_room_meeting))
+                .check(matches(withText("Salle A")));
+    }
+
+    private static Matcher<View> childAtPosition(
+            final Matcher<View> parentMatcher, final int position) {
+
+        return new TypeSafeMatcher<View>() {
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("Child at position " + position + " in parent ");
+                parentMatcher.describeTo(description);
+            }
+
+            @Override
+            public boolean matchesSafely(View view) {
+                ViewParent parent = view.getParent();
+                return parent instanceof ViewGroup && parentMatcher.matches(parent)
+                        && view.equals(((ViewGroup) parent).getChildAt(position));
+            }
+        };
+    }
 }
+
 

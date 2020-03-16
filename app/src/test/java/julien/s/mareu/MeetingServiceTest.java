@@ -1,6 +1,5 @@
 package julien.s.mareu;
 
-import org.hamcrest.core.IsCollectionContaining;
 import org.junit.Before;
 import org.junit.Test;
 
