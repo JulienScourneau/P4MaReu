@@ -96,7 +96,6 @@ public class MeetingsListTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, new DeleteViewAction()));
         onView(withId(R.id.list_meeting))
                 .check(withItemCount(ITEM-1));
-
     }
 
     @Test
