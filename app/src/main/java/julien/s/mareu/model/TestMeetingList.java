@@ -7,11 +7,11 @@ import java.util.List;
 public abstract class TestMeetingList {
 
    public static List<Meeting> meetingsList = Arrays.asList(
-           new Meeting("Salle C","17h00","02/03","Sujet cool","Participant1,Participant2"),
-           new Meeting("Salle A","17h45","02/03","Sujet interessant","Participant1,Participant2,Participant3"),
-           new Meeting("Salle B","16h45","26/02","Sujet important","Participant1,Participant2,Participant3,Participant4"),
-           new Meeting("Salle E","15h20","12/03","Sujet 5","Participant1,Participant2,Participant3"),
-           new Meeting("Salle D","15h20","11/03","Sujet 2","Participant1,Participant2")
+           new Meeting("Hypérion","17h00","02/03","Définition des objectifs","Participant1,Participant2"),
+           new Meeting("Ganymède","17h45","02/03","Etat des lieux","Participant1,Participant2,Participant3"),
+           new Meeting("Thémisto","16h45","26/02","Avancement des projets","Participant1,Participant2,Participant3,Participant4"),
+           new Meeting("Sedna","15h20","12/03","Brainstorming","Participant1,Participant2,Participant3"),
+           new Meeting("Ophelia","15h20","11/03","Planning stratégique","Participant1,Participant2")
    );
 
    public static List<Meeting> getFakeMeetingsList() {

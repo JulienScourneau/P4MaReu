@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/edit_room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="Salle"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_room"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="30dp"
+        android:entries="@array/room_meeting_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/edit_room"
+        app:layout_constraintTop_toTopOf="@id/edit_room" />
+
+    <TextView
+        android:id="@+id/edit_hour"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_room"
+        android:layout_toStartOf="@+id/edit_date"
+        android:hint="@string/hour_meeting"
+        android:padding="4dp"
+        android:text="Heure  00:00"
+        android:textSize="18dp"
+        app:layout_constraintTop_toBottomOf="@id/edit_room" />
+
+    <TextView
+        android:id="@+id/edit_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="Date  00/00"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_room"
+        app:layout_constraintStart_toEndOf="@+id/edit_hour"
+        app:layout_constraintTop_toTopOf="@id/edit_hour" />
+
+    <EditText
+        android:id="@+id/edit_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_participant"
+        android:hint="Sujet"
+        app:layout_constraintTop_toBottomOf="@+id/edit_hour"
+        app:layout_constraintEnd_toStartOf="@id/add_participant_button"/>
+
+    <EditText
+        android:id="@+id/edit_participant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_hour"
+        android:hint="Participant"
+        app:layout_constraintTop_toBottomOf="@+id/edit_subject" />
+
+    <ImageButton
+        android:id="@+id/add_participant_button"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@color/white"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/edit_participant"
+        app:layout_constraintTop_toTopOf="@+id/edit_participant" />
+
+    <ImageButton
+        android:id="@+id/delete_participant_button"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:backgroundTint="@color/white"
+        android:src="@android:drawable/ic_input_delete"
+        android:tint="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/edit_participant"
+        app:layout_constraintTop_toBottomOf="@+id/add_participant_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

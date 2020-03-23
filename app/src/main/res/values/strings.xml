@@ -3,14 +3,14 @@
     <string name="room_meeting">Salle A</string>
     <string name="hour_meeting">Heure</string>
     <string name="date_meeting">Date</string>
-    <string name="subject_meeting">Sujet A</string>
+    <string name="subject_meeting">Avancement des projets</string>
     <string name="participants_meeting">Participants1,Participants2</string>
 
     <string-array name="room_meeting_list">
-        <item>Salle A</item>
-        <item>Salle B</item>
-        <item>Salle C</item>
-        <item>Salle D</item>
-        <item>Salle E</item>
+        <item>Ganymède</item>
+        <item>Thémisto</item>
+        <item>Hypérion</item>
+        <item>Ophelia</item>
+        <item>Sedna</item>
     </string-array>
 </resources>

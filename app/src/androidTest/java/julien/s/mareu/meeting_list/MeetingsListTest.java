@@ -29,11 +29,13 @@ import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.assertThat;
 import static androidx.test.espresso.matcher.ViewMatchers.hasChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static julien.s.mareu.utils.RecyclerViewItemCountAssertion.withItemCount;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.startsWith;
 import static org.hamcrest.core.AllOf.allOf;
 
@@ -50,12 +52,8 @@ public class MeetingsListTest {
     @Rule
     public ActivityTestRule<ListMeetingActivity> mActivityTestRule = new ActivityTestRule<>(ListMeetingActivity.class);
 
-    @Before
-    public void setUp() {
-        mActivity = mActivityTestRule.getActivity();
-        mApiService = DI.getNewApiService();
-        ITEM = mApiService.getMeetingsList().size();
-    }
+
+
 
     @Test
     public void myMeetingList_isNotEmpty() {

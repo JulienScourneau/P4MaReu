@@ -30,7 +30,6 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
         private ImageButton mDeleteMeetingButton;
         private ImageView mMeetingIcon;
         private TextView mMeetingRoom;
-        private TextView mMeetingHour;
         private TextView mMeetingDate;
         private TextView mMeetingSubject;
         private TextView mMeetingParticipant;
@@ -39,7 +38,6 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
             super(itemView);
             mMeetingIcon = itemView.findViewById(R.id.item_icone_meeting);
             mMeetingRoom = itemView.findViewById(R.id.item_room_meeting);
-            mMeetingHour = itemView.findViewById(R.id.item_hour_meeting);
             mMeetingDate = itemView.findViewById(R.id.item_date_meeting);
             mMeetingSubject = itemView.findViewById(R.id.item_subject_meeting);
             mMeetingParticipant = itemView.findViewById(R.id.item_participant_meeting);
@@ -67,8 +65,7 @@ public class MeetingRecyclerView extends RecyclerView.Adapter<MeetingRecyclerVie
         final Meeting mMeetings = mMeetingList.get(position);
 
         holder.mMeetingRoom.setText(mMeetings.getRoom());
-        holder.mMeetingHour.setText(mMeetings.getHour());
-        holder.mMeetingDate.setText(mMeetings.getDate());
+        holder.mMeetingDate.setText(mMeetings.getHour() + " - " + mMeetings.getDate());
         holder.mMeetingSubject.setText(mMeetings.getSubject());
         holder.mMeetingParticipant.setText(mMeetings.getParticipant());
         holder.mMeetingIcon.setBackgroundColor(mMeetings.getIcone());
