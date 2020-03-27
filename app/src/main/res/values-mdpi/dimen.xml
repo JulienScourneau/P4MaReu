@@ -7,7 +7,11 @@
     <dimen name ="margin_bottom_item">28dp</dimen>
     <dimen name ="margin_start_subject">16dp</dimen>
     <dimen name ="max_with_subject">125dp</dimen>
+    <dimen name ="max_with_subject_land">250dp</dimen>
     <dimen name ="margin_start_date">90dp</dimen>
     <dimen name ="margin_end_room">40dp</dimen>
     <dimen name ="margin_top_item">8dp</dimen>
+    <dimen name ="margin_float_button">16dp</dimen>
+    <dimen name ="margin_float_button_land">24dp</dimen>
+    <dimen name="text_size_meeting">14sp</dimen>
 </resources>

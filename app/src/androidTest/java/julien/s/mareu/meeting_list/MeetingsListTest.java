@@ -12,6 +12,7 @@ import androidx.test.rule.ActivityTestRule;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,6 +22,7 @@ import julien.s.mareu.R;
 import julien.s.mareu.controller.DI;
 import julien.s.mareu.controller.ListMeetingActivity;
 import julien.s.mareu.controller.MeetingApiService;
+import julien.s.mareu.model.TestMeetingList;
 import julien.s.mareu.utils.DeleteViewAction;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -29,13 +31,11 @@ import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.assertThat;
 import static androidx.test.espresso.matcher.ViewMatchers.hasChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static julien.s.mareu.utils.RecyclerViewItemCountAssertion.withItemCount;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.startsWith;
 import static org.hamcrest.core.AllOf.allOf;
 
@@ -52,7 +52,18 @@ public class MeetingsListTest {
     @Rule
     public ActivityTestRule<ListMeetingActivity> mActivityTestRule = new ActivityTestRule<>(ListMeetingActivity.class);
 
+    @Before
+    public void setUp() {
+        mActivity = mActivityTestRule.getActivity();
+        mApiService = DI.getMeetingApiService();
+        ITEM = mApiService.getMeetingsList().size();
+    }
 
+    @After
+    public void cleanService() {
+        DI.getMeetingApiService().getMeetingsList().clear();
+        DI.getMeetingApiService().getMeetingsList().addAll(TestMeetingList.getFakeMeetingsList());
+    }
 
 
     @Test
@@ -102,9 +113,9 @@ public class MeetingsListTest {
                 .perform(click());
         onView(allOf(withId(R.id.title), withText("Date"), isDisplayed()))
                 .perform(click());
-        onView(allOf(withId(R.id.item_hour_meeting),
+        onView(allOf(withId(R.id.item_date_meeting),
                 childAtPosition(allOf(withId(R.id.fragment_item_meeting), childAtPosition(withId(R.id.list_meeting), 0)), 2), isDisplayed()))
-                .check(matches(withText("16h45")));
+                .check(matches(withText("16h45 - 26/02")));
     }
 
     @Test
@@ -116,9 +127,9 @@ public class MeetingsListTest {
         onView(withId(R.id.search_src_text))
                 .perform(click());
         onView(withId(R.id.search_src_text))
-                .perform(replaceText("Salle A"), closeSoftKeyboard());
+                .perform(replaceText("Ganymède"), closeSoftKeyboard());
         onView(withId(R.id.item_room_meeting))
-                .check(matches(withText("Salle A")));
+                .check(matches(withText("Ganymède")));
     }
 
     private static Matcher<View> childAtPosition(

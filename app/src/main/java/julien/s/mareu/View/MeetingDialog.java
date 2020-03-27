@@ -80,6 +80,7 @@ public class MeetingDialog extends AppCompatDialogFragment {
     }
 
     private void setUpListener(){
+
         mEditHour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +111,7 @@ public class MeetingDialog extends AppCompatDialogFragment {
     }
 
     private void openTimePicker(){
+
         TimePickerFragment timePicker = new TimePickerFragment();
         timePicker.setPickerListener(new TimePickerDialog.OnTimeSetListener() {
             @Override
@@ -141,7 +143,7 @@ public class MeetingDialog extends AppCompatDialogFragment {
             Toast.makeText(getActivity(),"Entrer un nom",Toast.LENGTH_SHORT).show();
         }else{
             mParticipantList.add(mEditParticipant.getText().toString());
-            mEditParticipant.setHint(Meeting.join(",",mParticipantList));
+            mEditParticipant.setHint(Meeting.join("," + " ",mParticipantList));
             mEditParticipant.setText("");
         }
     }

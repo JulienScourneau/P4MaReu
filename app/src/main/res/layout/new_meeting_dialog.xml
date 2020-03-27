@@ -10,16 +10,16 @@
         android:id="@+id/edit_room"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="4dp"
+        android:padding="@dimen/dialog_fragment_padding"
         android:text="Salle"
-        android:textSize="18sp"
+        android:textSize="@dimen/text_size_dialog_fragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinner_room"
         android:layout_width="0dp"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:entries="@array/room_meeting_list"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,26 +27,50 @@
         app:layout_constraintTop_toTopOf="@id/edit_room" />
 
     <TextView
-        android:id="@+id/edit_hour"
-        android:layout_width="120dp"
+        android:id="@+id/text_hour"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit_room"
-        android:layout_toStartOf="@+id/edit_date"
+        android:layout_toStartOf="@+id/text_date"
         android:hint="@string/hour_meeting"
-        android:padding="4dp"
-        android:text="Heure  00:00"
-        android:textSize="18dp"
+        android:padding="@dimen/dialog_fragment_padding"
+        android:text="Heure :"
+        android:textSize="@dimen/text_size_dialog_fragment"
         app:layout_constraintTop_toBottomOf="@id/edit_room" />
 
     <TextView
-        android:id="@+id/edit_date"
-        android:layout_width="0dp"
+        android:id="@+id/edit_hour"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:text="Date  00/00"
-        android:textSize="18dp"
-        app:layout_constraintEnd_toEndOf="@+id/spinner_room"
+        android:padding="@dimen/dialog_fragment_padding"
+        android:layout_below="@+id/edit_room"
+        app:layout_constraintStart_toEndOf="@id/text_hour"
+        app:layout_constraintEnd_toStartOf="@id/text_date"
+        android:text="00:00"
+        android:textSize="@dimen/text_size_dialog_fragment"
+        app:layout_constraintTop_toBottomOf="@id/edit_room"
+        />
+
+    <TextView
+        android:id="@+id/text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dialog_fragment_padding"
+        android:text="Date:"
+        android:textSize="@dimen/text_size_dialog_fragment"
+        app:layout_constraintEnd_toEndOf="@+id/edit_date"
         app:layout_constraintStart_toEndOf="@+id/edit_hour"
+        app:layout_constraintTop_toTopOf="@id/edit_hour" />
+
+    <TextView
+        android:id="@+id/edit_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dialog_fragment_padding"
+        android:text="00/00"
+        android:textSize="@dimen/text_size_dialog_fragment"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_room"
+        app:layout_constraintStart_toEndOf="@+id/text_date"
         app:layout_constraintTop_toTopOf="@id/edit_hour" />
 
     <EditText
@@ -68,8 +92,8 @@
 
     <ImageButton
         android:id="@+id/add_participant_button"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="@dimen/dialog_fragment_button"
+        android:layout_height="@dimen/dialog_fragment_button"
         android:backgroundTint="@color/white"
         android:src="@android:drawable/ic_input_add"
         android:tint="@color/black"
@@ -78,8 +102,8 @@
 
     <ImageButton
         android:id="@+id/delete_participant_button"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="@dimen/dialog_fragment_button"
+        android:layout_height="@dimen/dialog_fragment_button"
         android:backgroundTint="@color/white"
         android:src="@android:drawable/ic_input_delete"
         android:tint="@color/black"

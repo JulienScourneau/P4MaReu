@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Item Meeting -->
     <dimen name ="size_cardview">50dp</dimen>
     <dimen name ="corner_radius_cardview">40dp</dimen>
     <dimen name ="margin_cardview">8dp</dimen>
@@ -7,7 +9,21 @@
     <dimen name ="margin_bottom_item">28dp</dimen>
     <dimen name ="margin_start_subject">16dp</dimen>
     <dimen name ="max_with_subject">125dp</dimen>
+    <dimen name ="max_with_subject_land">250dp</dimen>
     <dimen name ="margin_start_date">90dp</dimen>
     <dimen name ="margin_end_room">40dp</dimen>
     <dimen name ="margin_top_item">8dp</dimen>
+
+    <!-- Activity -->
+    <dimen name ="margin_float_button">16dp</dimen>
+    <dimen name ="margin_float_button_land">24dp</dimen>
+    <dimen name="padding_recycler_view">4dp</dimen>
+
+    <!-- DialogFragment -->
+    <dimen name="dialog_fragment_padding">4dp</dimen>
+    <dimen name="dialog_fragment_button">45dp</dimen>
+
+    <!-- TextSize -->
+    <dimen name="text_size_meeting">14sp</dimen>
+    <dimen name="text_size_dialog_fragment">18sp</dimen>
 </resources>
