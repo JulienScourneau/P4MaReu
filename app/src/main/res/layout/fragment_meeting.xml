@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/white"
+    android:layout_margin="2dp"
     >
 
     <androidx.cardview.widget.CardView
@@ -95,8 +96,8 @@
 
     <ImageButton
         android:id="@+id/item_list_delete_meeting_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/delete_btn_size"
+        android:layout_height="@dimen/delete_btn_size"
         android:layout_marginEnd="@dimen/margin_cardview"
         android:background="@null"
         android:src="@drawable/ic_delete_white_24dp"

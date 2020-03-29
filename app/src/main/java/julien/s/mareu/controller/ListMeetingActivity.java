@@ -75,13 +75,13 @@ public class ListMeetingActivity extends AppCompatActivity {
                 if(mSortMeeting == true){
                     mApiService.sortMeetingByDate();
                     mSortMeeting = false;
-                    item.setIcon(R.drawable.ic_expand_less);
+                    item.setIcon(R.drawable.ic_expand_less_black_24dp);
                     mAdapter.notifyDataSetChanged();
                 } else {
                     mApiService.sortMeetingByDate();
                     Collections.reverse(mMeetingList);
                     mSortMeeting = true;
-                    item.setIcon(R.drawable.ic_expand_more);
+                    item.setIcon(R.drawable.ic_expand_more_black_24dp);
                     mAdapter.notifyDataSetChanged();
                 }
                 return true;
