@@ -15,7 +15,7 @@
     <dimen name="delete_btn_size">25dp</dimen>
 
     <!-- Activity -->
-    <dimen name ="margin_float_button">16dp</dimen>
+    <dimen name ="margin_float_btn">16dp</dimen>
     <dimen name ="margin_float_button_land">24dp</dimen>
     <dimen name="padding_recycler_view">4dp</dimen>
 

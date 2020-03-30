@@ -25,6 +25,7 @@ import julien.s.mareu.controller.MeetingApiService;
 import julien.s.mareu.model.TestMeetingList;
 import julien.s.mareu.utils.DeleteViewAction;
 
+import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
@@ -34,8 +35,11 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.hasChildCount;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static julien.s.mareu.utils.RecyclerViewItemCountAssertion.withItemCount;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 import static org.hamcrest.core.AllOf.allOf;
 
@@ -76,11 +80,11 @@ public class MeetingsListTest {
     public void myMeetingList_onClick_addNewMeeting_withDialogFragment() {
         onView(withId(R.id.add_new_meeting_button))
                 .perform(click());
-        onView(allOf(withId(R.id.edit_hour), withText(startsWith("Heure")), isDisplayed()))
+        onView(allOf(withId(R.id.edit_hour), withText(startsWith("00:00")), isDisplayed()))
                 .perform(click());
         onView(allOf(withId(android.R.id.button1), withText("OK"), isDisplayed()))
                 .perform(scrollTo(), click());
-        onView(allOf(withId(R.id.edit_date), withText("Date  00/00"), isDisplayed()))
+        onView(allOf(withId(R.id.edit_date), withText("00/00"), isDisplayed()))
                 .perform(click());
         onView(allOf(withId(android.R.id.button1), withText("OK"), isDisplayed()))
                 .perform(scrollTo(), click());

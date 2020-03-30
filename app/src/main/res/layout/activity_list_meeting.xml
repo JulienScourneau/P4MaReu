@@ -23,14 +23,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="@dimen/margin_float_button"
-        android:layout_marginBottom="@dimen/margin_float_button"
+        android:layout_marginEnd="@dimen/margin_float_btn"
+        android:layout_marginBottom="@dimen/margin_float_btn"
         android:clickable="true"
         android:focusable="true"
         android:src="@android:drawable/ic_input_add"
-        app:backgroundTint="@color/red"
         android:tint="@color/white"
-        />
+        app:backgroundTint="@color/red" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_meeting"
